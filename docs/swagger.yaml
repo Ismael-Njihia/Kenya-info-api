@@ -1,0 +1,732 @@
+basePath: /
+definitions:
+  models.County:
+    properties:
+      area:
+        type: number
+      capital:
+        type: string
+      code:
+        type: integer
+      created_at:
+        type: string
+      governor:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      population:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  models.Leader:
+    properties:
+      county:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      party:
+        type: string
+      phone:
+        type: string
+      position:
+        type: string
+      start_date:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Ward:
+    properties:
+      constituency_name:
+        type: string
+      county_id:
+        type: string
+      county_name:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      population:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@kenyainfo.api
+    name: API Support
+    url: https://github.com/Ismael-Njihia/Kenya-info-api
+  description: Fast and reliable API for Kenya's counties, wards, and leaders data
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: Kenya Info API
+  version: "1.0"
+paths:
+  /api/v1/counties:
+    get:
+      consumes:
+      - application/json
+      description: Get all counties in Kenya
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.County'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all counties
+      tags:
+      - counties
+    post:
+      consumes:
+      - application/json
+      description: Create a new county record
+      parameters:
+      - description: County data
+        in: body
+        name: county
+        required: true
+        schema:
+          $ref: '#/definitions/models.County'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.County'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new county
+      tags:
+      - counties
+  /api/v1/counties/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a county record
+      parameters:
+      - description: County ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a county
+      tags:
+      - counties
+    get:
+      consumes:
+      - application/json
+      description: Get a specific county by its ID
+      parameters:
+      - description: County ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.County'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get county by ID
+      tags:
+      - counties
+    put:
+      consumes:
+      - application/json
+      description: Update an existing county record
+      parameters:
+      - description: County ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: County data
+        in: body
+        name: county
+        required: true
+        schema:
+          $ref: '#/definitions/models.County'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.County'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update a county
+      tags:
+      - counties
+  /api/v1/counties/code/{code}:
+    get:
+      consumes:
+      - application/json
+      description: Get a specific county by its code
+      parameters:
+      - description: County Code
+        in: path
+        name: code
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.County'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get county by code
+      tags:
+      - counties
+  /api/v1/leaders:
+    get:
+      consumes:
+      - application/json
+      description: Get all leaders in Kenya
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Leader'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all leaders
+      tags:
+      - leaders
+    post:
+      consumes:
+      - application/json
+      description: Create a new leader record
+      parameters:
+      - description: Leader data
+        in: body
+        name: leader
+        required: true
+        schema:
+          $ref: '#/definitions/models.Leader'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Leader'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new leader
+      tags:
+      - leaders
+  /api/v1/leaders/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a leader record
+      parameters:
+      - description: Leader ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a leader
+      tags:
+      - leaders
+    get:
+      consumes:
+      - application/json
+      description: Get a specific leader by their ID
+      parameters:
+      - description: Leader ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Leader'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get leader by ID
+      tags:
+      - leaders
+    put:
+      consumes:
+      - application/json
+      description: Update an existing leader record
+      parameters:
+      - description: Leader ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Leader data
+        in: body
+        name: leader
+        required: true
+        schema:
+          $ref: '#/definitions/models.Leader'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Leader'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update a leader
+      tags:
+      - leaders
+  /api/v1/leaders/county/{county}:
+    get:
+      consumes:
+      - application/json
+      description: Get all leaders from a specific county
+      parameters:
+      - description: County name
+        in: path
+        name: county
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Leader'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get leaders by county
+      tags:
+      - leaders
+  /api/v1/leaders/position/{position}:
+    get:
+      consumes:
+      - application/json
+      description: Get all leaders with a specific position
+      parameters:
+      - description: Position
+        in: path
+        name: position
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Leader'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get leaders by position
+      tags:
+      - leaders
+  /api/v1/wards:
+    get:
+      consumes:
+      - application/json
+      description: Get all wards in Kenya
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Ward'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all wards
+      tags:
+      - wards
+    post:
+      consumes:
+      - application/json
+      description: Create a new ward record
+      parameters:
+      - description: Ward data
+        in: body
+        name: ward
+        required: true
+        schema:
+          $ref: '#/definitions/models.Ward'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Ward'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a new ward
+      tags:
+      - wards
+  /api/v1/wards/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a ward record
+      parameters:
+      - description: Ward ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete a ward
+      tags:
+      - wards
+    get:
+      consumes:
+      - application/json
+      description: Get a specific ward by its ID
+      parameters:
+      - description: Ward ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Ward'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get ward by ID
+      tags:
+      - wards
+    put:
+      consumes:
+      - application/json
+      description: Update an existing ward record
+      parameters:
+      - description: Ward ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Ward data
+        in: body
+        name: ward
+        required: true
+        schema:
+          $ref: '#/definitions/models.Ward'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Ward'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update a ward
+      tags:
+      - wards
+  /api/v1/wards/county/{county_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all wards in a specific county
+      parameters:
+      - description: County ID
+        in: path
+        name: county_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Ward'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get wards by county ID
+      tags:
+      - wards
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Check if the API is running and database is connected
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Health check
+      tags:
+      - health
+schemes:
+- http
+- https
+swagger: "2.0"
