@@ -5,12 +5,14 @@ main
 *.dll
 *.so
 *.dylib
+bin/
 
 # Test binary
 *.test
 
 # Output of go coverage
 *.out
+coverage.html
 
 # Dependency directories
 vendor/
