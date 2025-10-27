@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - ENV=development
+      - MONGODB_URI=mongodb://mongo:27017
+      - MONGODB_DATABASE=kenya_info
+      - MONGODB_TIMEOUT=10
+      - LOG_LEVEL=info
+    depends_on:
+      - mongo
+    networks:
+      - kenya-network
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - kenya-network
+
+volumes:
+  mongo-data:
+
+networks:
+  kenya-network:
+    driver: bridge
