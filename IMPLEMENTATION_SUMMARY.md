@@ -218,7 +218,7 @@ The following were mentioned in documentation but not implemented (as per minima
 
 ## Files Created
 
-Total: 30 files across the project structure
+Total: 32 files across the project structure
 
 ### Source Code (17 files)
 - cmd/api/main.go
@@ -241,7 +241,7 @@ Total: 30 files across the project structure
 - LICENSE
 - docs/* (3 generated Swagger files)
 
-### Configuration (6 files)
+### Configuration (8 files)
 - Dockerfile
 - docker-compose.yml
 - .env.example
@@ -249,7 +249,8 @@ Total: 30 files across the project structure
 - .golangci.yml
 - Makefile
 - .github/workflows/ci.yml
-- go.mod & go.sum
+- go.mod
+- go.sum
 
 ## Conclusion
 
