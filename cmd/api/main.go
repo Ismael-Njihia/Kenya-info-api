@@ -27,13 +27,10 @@ import (
 // @version 1.0
 // @description A fast, reliable API providing structured data on Kenya's counties, wards, and leaders
 // @termsOfService http://swagger.io/terms/
-
 // @contact.name API Support
 // @contact.email support@kenya-info-api.com
-
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
-
 // @host localhost:8080
 // @BasePath /
 // @schemes http https
@@ -54,16 +51,19 @@ func main() {
 
 	logger.Info("Starting Kenya Info API", zap.String("env", cfg.Server.Env))
 
-	// Connect to database
+	// Connect to MongoDB
 	db, err := database.Connect(&cfg.Database)
 	if err != nil {
 		logger.Fatal("Failed to connect to database", zap.Error(err))
 	}
+	logger.Info("✅ Connected successfully to MongoDB Atlas")
+
+	// Ensure database disconnects gracefully
 	defer func() {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
-		if err := db.Disconnect(ctx); err != nil {
-			logger.Error("Error disconnecting from database", zap.Error(err))
+		if err := db.Close(ctx); err != nil {
+			logger.Error("Error disconnecting from MongoDB", zap.Error(err))
 		}
 	}()
 
@@ -78,7 +78,7 @@ func main() {
 	leaderHandler := handlers.NewLeaderHandler(leaderService)
 	healthHandler := handlers.NewHealthHandler()
 
-	// Setup Gin router
+	// Setup Gin
 	if cfg.Server.Env == "production" {
 		gin.SetMode(gin.ReleaseMode)
 	}
@@ -88,7 +88,7 @@ func main() {
 	router.Use(middleware.Recovery())
 	router.Use(middleware.CORS())
 
-	// Health check endpoint
+	// Health check
 	router.GET("/health", healthHandler.HealthCheck)
 
 	// API v1 routes
@@ -105,9 +105,9 @@ func main() {
 			counties.PUT("/:id", countyHandler.Update)
 			counties.DELETE("/:id", countyHandler.Delete)
 
-			// County-specific wards and leaders
-			counties.GET("/:county_id/wards", wardHandler.GetByCountyID)
-			counties.GET("/:county_id/leaders", leaderHandler.GetByCountyID)
+			// ✅ Fixed wildcard conflict — consistent use of :id
+			counties.GET("/:id/wards", wardHandler.GetByCountyID)
+			counties.GET("/:id/leaders", leaderHandler.GetByCountyID)
 		}
 
 		// Ward routes
@@ -144,7 +144,7 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	// Start server in goroutine
+	// Start server
 	go func() {
 		logger.Info("Server starting", zap.String("port", cfg.Server.Port))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
@@ -152,13 +152,12 @@ func main() {
 		}
 	}()
 
-	// Wait for interrupt signal to gracefully shutdown the server
+	// Graceful shutdown
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
-	logger.Info("Shutting down server...")
 
-	// Graceful shutdown with 5 second timeout
+	logger.Info("Shutting down server...")
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -166,5 +165,5 @@ func main() {
 		logger.Fatal("Server forced to shutdown", zap.Error(err))
 	}
 
-	logger.Info("Server exited")
+	logger.Info("Server exited gracefully")
 }

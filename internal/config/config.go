@@ -1,9 +1,11 @@
 package config
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"strconv"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -18,9 +20,9 @@ type ServerConfig struct {
 }
 
 type DatabaseConfig struct {
-	MongoURI   string
-	Database   string
-	Timeout    int
+	URI     string
+	Name    string
+	Timeout int
 }
 
 type LoggerConfig struct {
@@ -28,40 +30,35 @@ type LoggerConfig struct {
 }
 
 func Load() (*Config, error) {
-	mongoURI := os.Getenv("MONGODB_URI")
-	if mongoURI == "" {
-		return nil, fmt.Errorf("MONGODB_URI is required")
+	// Load .env file
+	_ = godotenv.Load(".env")
+
+	// Parse timeout from string to int
+	timeout, err := strconv.Atoi(getEnv("MONGODB_TIMEOUT", "10"))
+	if err != nil {
+		log.Printf("Invalid MONGODB_TIMEOUT, using default 10s")
+		timeout = 10
 	}
 
-	cfg := &Config{
+	return &Config{
 		Server: ServerConfig{
 			Port: getEnv("PORT", "8080"),
 			Env:  getEnv("ENV", "development"),
 		},
 		Database: DatabaseConfig{
-			MongoURI: mongoURI,
-			Database: getEnv("MONGODB_DATABASE", "kenya_info"),
-			Timeout:  getEnvAsInt("MONGODB_TIMEOUT", 10),
+			URI:     getEnv("MONGODB_URI", ""),
+			Name:    getEnv("MONGODB_DATABASE", "kenya_info"),
+			Timeout: timeout,
 		},
 		Logger: LoggerConfig{
 			Level: getEnv("LOG_LEVEL", "info"),
 		},
-	}
-
-	return cfg, nil
+	}, nil
 }
 
-func getEnv(key, defaultValue string) string {
-	if value := os.Getenv(key); value != "" {
+func getEnv(key, fallback string) string {
+	if value, exists := os.LookupEnv(key); exists {
 		return value
 	}
-	return defaultValue
-}
-
-func getEnvAsInt(key string, defaultValue int) int {
-	valueStr := getEnv(key, "")
-	if value, err := strconv.Atoi(valueStr); err == nil {
-		return value
-	}
-	return defaultValue
+	return fallback
 }
