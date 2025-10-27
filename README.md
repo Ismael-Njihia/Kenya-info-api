@@ -105,6 +105,24 @@ go build -o main cmd/api/main.go
 
 The API will be available at `http://localhost:8080`
 
+### Seed the Database
+
+To populate the database with sample data for all 47 Kenyan counties, wards, and leaders:
+
+```bash
+# Make sure MONGODB_URI is set in your .env file
+make seed
+
+# Or run directly
+go run scripts/seed.go
+```
+
+This will:
+- Clear existing data (optional, can be commented out in the script)
+- Insert all 47 Kenyan counties with accurate data
+- Add sample wards for multiple counties
+- Add sample leaders (national, senators, MPs, MCAs)
+
 ## 📚 API Documentation
 
 ### Interactive Documentation

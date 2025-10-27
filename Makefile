@@ -48,6 +48,9 @@ migrate-up: ## Run database migrations (placeholder)
 migrate-down: ## Rollback database migrations (placeholder)
 	@echo "Rollback would run here"
 
+seed: ## Seed the database with sample data
+	go run scripts/seed.go
+
 dev: ## Run in development mode with hot reload (requires air)
 	air
 
