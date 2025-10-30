@@ -10,26 +10,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type WardHandler struct {
-	service *services.WardService
+type ConstituencyHandler struct {
+	service *services.ConstituencyService
 }
 
-func NewWardHandler(service *services.WardService) *WardHandler {
-	return &WardHandler{service: service}
+func NewConstituencyHandler(service *services.ConstituencyService) *ConstituencyHandler {
+	return &ConstituencyHandler{service: service}
 }
 
 // GetAll godoc
-// @Summary Get all wards
-// @Description Get a list of all wards with pagination
-// @Tags wards
+// @Summary Get all constituencies
+// @Description Get a list of all constituencies with pagination
+// @Tags constituencies
 // @Accept json
 // @Produce json
 // @Param page query int false "Page number" default(1)
 // @Param page_size query int false "Page size" default(50)
 // @Success 200 {object} models.PaginatedResponse
 // @Failure 500 {object} models.APIResponse
-// @Router /api/v1/wards [get]
-func (h *WardHandler) GetAll(c *gin.Context) {
+// @Router /api/v1/constituencies [get]
+func (h *ConstituencyHandler) GetAll(c *gin.Context) {
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	pageSize, _ := strconv.Atoi(c.DefaultQuery("page_size", "50"))
 
@@ -40,20 +40,19 @@ func (h *WardHandler) GetAll(c *gin.Context) {
 		pageSize = 50
 	}
 
-	wards, total, err := h.service.GetAll(c.Request.Context(), page, pageSize)
+	constituencies, total, err := h.service.GetAll(c.Request.Context(), page, pageSize)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, models.APIResponse{
 			Success: false,
-			Error:   "Failed to fetch wards",
+			Error:   "Failed to fetch constituencies",
 		})
 		return
 	}
 
 	totalPages := int(math.Ceil(float64(total) / float64(pageSize)))
-
 	c.JSON(http.StatusOK, models.PaginatedResponse{
 		Success:    true,
-		Data:       wards,
+		Data:       constituencies,
 		Page:       page,
 		PageSize:   pageSize,
 		TotalCount: total,
@@ -62,22 +61,22 @@ func (h *WardHandler) GetAll(c *gin.Context) {
 }
 
 // GetByID godoc
-// @Summary Get ward by ID
-// @Description Get a single ward by its ID
-// @Tags wards
+// @Summary Get constituency by ID
+// @Description Get a single constituency by its ID
+// @Tags constituencies
 // @Accept json
 // @Produce json
-// @Param id path string true "Ward ID"
+// @Param id path string true "Constituency ID"
 // @Success 200 {object} models.APIResponse
 // @Failure 404 {object} models.APIResponse
-// @Router /api/v1/wards/{id} [get]
-func (h *WardHandler) GetByID(c *gin.Context) {
+// @Router /api/v1/constituencies/{id} [get]
+func (h *ConstituencyHandler) GetByID(c *gin.Context) {
 	id := c.Param("id")
 
-	ward, err := h.service.GetByID(c.Request.Context(), id)
+	constituency, err := h.service.GetByID(c.Request.Context(), id)
 	if err != nil {
 		status := http.StatusInternalServerError
-		if err.Error() == "ward not found" {
+		if err.Error() == "constituency not found" {
 			status = http.StatusNotFound
 		}
 		c.JSON(status, models.APIResponse{
@@ -89,14 +88,14 @@ func (h *WardHandler) GetByID(c *gin.Context) {
 
 	c.JSON(http.StatusOK, models.APIResponse{
 		Success: true,
-		Data:    ward,
+		Data:    constituency,
 	})
 }
 
 // GetByCountyID godoc
-// @Summary Get wards by county ID
-// @Description Get all wards belonging to a specific county
-// @Tags wards
+// @Summary Get constituencies by county ID
+// @Description Get all constituencies belonging to a specific county
+// @Tags constituencies
 // @Accept json
 // @Produce json
 // @Param county_id path string true "County ID"
@@ -104,8 +103,8 @@ func (h *WardHandler) GetByID(c *gin.Context) {
 // @Param page_size query int false "Page size" default(50)
 // @Success 200 {object} models.PaginatedResponse
 // @Failure 400 {object} models.APIResponse
-// @Router /api/v1/counties/{county_id}/wards [get]
-func (h *WardHandler) GetByCountyID(c *gin.Context) {
+// @Router /api/v1/counties/{county_id}/constituencies [get]
+func (h *ConstituencyHandler) GetByCountyID(c *gin.Context) {
 	countyID := c.Param("id")
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	pageSize, _ := strconv.Atoi(c.DefaultQuery("page_size", "50"))
@@ -117,7 +116,7 @@ func (h *WardHandler) GetByCountyID(c *gin.Context) {
 		pageSize = 50
 	}
 
-	wards, total, err := h.service.GetByCountyID(c.Request.Context(), countyID, page, pageSize)
+	constituencies, total, err := h.service.GetByCountyID(c.Request.Context(), countyID, page, pageSize)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.APIResponse{
 			Success: false,
@@ -130,53 +129,7 @@ func (h *WardHandler) GetByCountyID(c *gin.Context) {
 
 	c.JSON(http.StatusOK, models.PaginatedResponse{
 		Success:    true,
-		Data:       wards,
-		Page:       page,
-		PageSize:   pageSize,
-		TotalCount: total,
-		TotalPages: totalPages,
-	})
-}
-
-// GetByConstituencyID godoc
-// @Summary Get wards by constituency ID
-// @Description Get all wards belonging to a specific constituency
-// @Tags wards
-// @Accept json
-// @Produce json
-// @Param constituency_id path string true "Constituency ID"
-// @Param page query int false "Page number" default(1)
-// @Param page_size query int false "Page size" default(50)
-// @Success 200 {object} models.PaginatedResponse
-// @Failure 400 {object} models.APIResponse
-// @Router /api/v1/constituencies/{constituency_id}/wards [get]
-
-func (h *WardHandler) GetByConstituencyID(c *gin.Context) {
-	constituencyID := c.Param("id")
-	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	pageSize, _ := strconv.Atoi(c.DefaultQuery("page_size", "50"))
-
-	if page < 1 {
-		page = 1
-	}
-	if pageSize < 1 || pageSize > 100 {
-		pageSize = 50
-	}
-
-	wards, total, err := h.service.GetByConstituencyID(c.Request.Context(), constituencyID, page, pageSize)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, models.APIResponse{
-			Success: false,
-			Error:   err.Error(),
-		})
-		return
-	}
-
-	totalPages := int(math.Ceil(float64(total) / float64(pageSize)))
-
-	c.JSON(http.StatusOK, models.PaginatedResponse{
-		Success:    true,
-		Data:       wards,
+		Data:       constituencies,
 		Page:       page,
 		PageSize:   pageSize,
 		TotalCount: total,
@@ -185,18 +138,18 @@ func (h *WardHandler) GetByConstituencyID(c *gin.Context) {
 }
 
 // Create godoc
-// @Summary Create a new ward
-// @Description Create a new ward record
-// @Tags wards
+// @Summary Create a new constituency
+// @Description Create a new constituency record
+// @Tags constituencies
 // @Accept json
 // @Produce json
-// @Param ward body models.Ward true "Ward object"
+// @Param constituency body models.Constituency true "Constituency object"
 // @Success 201 {object} models.APIResponse
 // @Failure 400 {object} models.APIResponse
-// @Router /api/v1/wards [post]
-func (h *WardHandler) Create(c *gin.Context) {
-	var ward models.Ward
-	if err := c.ShouldBindJSON(&ward); err != nil {
+// @Router /api/v1/constituencies [post]
+func (h *ConstituencyHandler) Create(c *gin.Context) {
+	var constituency models.Constituency
+	if err := c.ShouldBindJSON(&constituency); err != nil {
 		c.JSON(http.StatusBadRequest, models.APIResponse{
 			Success: false,
 			Error:   err.Error(),
@@ -204,38 +157,38 @@ func (h *WardHandler) Create(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Create(c.Request.Context(), &ward); err != nil {
+	if err := h.service.Create(c.Request.Context(), &constituency); err != nil {
 		c.JSON(http.StatusInternalServerError, models.APIResponse{
 			Success: false,
-			Error:   "Failed to create ward",
+			Error:   "Failed to create constituency",
 		})
 		return
 	}
 
 	c.JSON(http.StatusCreated, models.APIResponse{
 		Success: true,
-		Message: "Ward created successfully",
-		Data:    ward,
+		Message: "Constituency created successfully",
+		Data:    constituency,
 	})
 }
 
 // Update godoc
-// @Summary Update a ward
-// @Description Update an existing ward record
-// @Tags wards
+// @Summary Update a constituency
+// @Description Update an existing constituency record
+// @Tags constituencies
 // @Accept json
 // @Produce json
-// @Param id path string true "Ward ID"
-// @Param ward body models.Ward true "Ward object"
+// @Param id path string true "Constituency ID"
+// @Param constituency body models.Constituency true "Constituency object"
 // @Success 200 {object} models.APIResponse
 // @Failure 400 {object} models.APIResponse
 // @Failure 404 {object} models.APIResponse
-// @Router /api/v1/wards/{id} [put]
-func (h *WardHandler) Update(c *gin.Context) {
+// @Router /api/v1/constituencies/{id} [put]
+func (h *ConstituencyHandler) Update(c *gin.Context) {
 	id := c.Param("id")
 
-	var ward models.Ward
-	if err := c.ShouldBindJSON(&ward); err != nil {
+	var constituency models.Constituency
+	if err := c.ShouldBindJSON(&constituency); err != nil {
 		c.JSON(http.StatusBadRequest, models.APIResponse{
 			Success: false,
 			Error:   err.Error(),
@@ -243,9 +196,9 @@ func (h *WardHandler) Update(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.Update(c.Request.Context(), id, &ward); err != nil {
+	if err := h.service.Update(c.Request.Context(), id, &constituency); err != nil {
 		status := http.StatusInternalServerError
-		if err.Error() == "ward not found" {
+		if err.Error() == "constituency not found" {
 			status = http.StatusNotFound
 		}
 		c.JSON(status, models.APIResponse{
@@ -257,26 +210,26 @@ func (h *WardHandler) Update(c *gin.Context) {
 
 	c.JSON(http.StatusOK, models.APIResponse{
 		Success: true,
-		Message: "Ward updated successfully",
+		Message: "Constituency updated successfully",
 	})
 }
 
 // Delete godoc
-// @Summary Delete a ward
-// @Description Delete a ward record
-// @Tags wards
+// @Summary Delete a constituency
+// @Description Delete a constituency record
+// @Tags constituencies
 // @Accept json
 // @Produce json
-// @Param id path string true "Ward ID"
+// @Param id path string true "Constituency ID"
 // @Success 200 {object} models.APIResponse
 // @Failure 404 {object} models.APIResponse
-// @Router /api/v1/wards/{id} [delete]
-func (h *WardHandler) Delete(c *gin.Context) {
+// @Router /api/v1/constituencies/{id} [delete]
+func (h *ConstituencyHandler) Delete(c *gin.Context) {
 	id := c.Param("id")
 
 	if err := h.service.Delete(c.Request.Context(), id); err != nil {
 		status := http.StatusInternalServerError
-		if err.Error() == "ward not found" {
+		if err.Error() == "constituency not found" {
 			status = http.StatusNotFound
 		}
 		c.JSON(status, models.APIResponse{
@@ -288,6 +241,6 @@ func (h *WardHandler) Delete(c *gin.Context) {
 
 	c.JSON(http.StatusOK, models.APIResponse{
 		Success: true,
-		Message: "Ward deleted successfully",
+		Message: "Constituency deleted successfully",
 	})
 }

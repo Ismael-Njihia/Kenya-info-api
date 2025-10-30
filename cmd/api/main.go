@@ -69,11 +69,13 @@ func main() {
 
 	// Initialize services
 	countyService := services.NewCountyService(db)
+	constituencyService := services.NewConstituencyService(db)
 	wardService := services.NewWardService(db)
 	leaderService := services.NewLeaderService(db)
 
 	// Initialize handlers
 	countyHandler := handlers.NewCountyHandler(countyService)
+	constituencyHandler := handlers.NewConstituencyHandler(constituencyService)
 	wardHandler := handlers.NewWardHandler(wardService)
 	leaderHandler := handlers.NewLeaderHandler(leaderService)
 	healthHandler := handlers.NewHealthHandler()
@@ -108,6 +110,19 @@ func main() {
 			// ✅ Fixed wildcard conflict — consistent use of :id
 			counties.GET("/:id/wards", wardHandler.GetByCountyID)
 			counties.GET("/:id/leaders", leaderHandler.GetByCountyID)
+			counties.GET("/:id/constituencies", constituencyHandler.GetByCountyID)
+		}
+		// Constituency routes
+		constituencies := v1.Group("/constituencies")
+		{
+			constituencies.GET("", constituencyHandler.GetAll)
+			constituencies.GET("/:id", constituencyHandler.GetByID)
+			constituencies.POST("", constituencyHandler.Create)
+			constituencies.PUT("/:id", constituencyHandler.Update)
+			constituencies.DELETE("/:id", constituencyHandler.Delete)
+
+			// ✅ Fixed wildcard conflict — consistent use of :id
+			constituencies.GET("/:id/wards", wardHandler.GetByConstituencyID)
 		}
 
 		// Ward routes

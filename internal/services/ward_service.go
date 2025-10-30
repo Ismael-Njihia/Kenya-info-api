@@ -74,15 +74,21 @@ func (s *WardService) GetByID(ctx context.Context, id string) (*models.Ward, err
 
 // GetByCountyID retrieves wards by county ID
 func (s *WardService) GetByCountyID(ctx context.Context, countyID string, page, pageSize int) ([]models.Ward, int64, error) {
+	// Convert the countyID string (hex) to an ObjectID
 	objectID, err := primitive.ObjectIDFromHex(countyID)
 	if err != nil {
 		return nil, 0, fmt.Errorf("invalid county ID: %w", err)
 	}
 
 	skip := (page - 1) * pageSize
-	opts := options.Find().SetSkip(int64(skip)).SetLimit(int64(pageSize)).SetSort(bson.D{{Key: "name", Value: 1}})
+	opts := options.Find().
+		SetSkip(int64(skip)).
+		SetLimit(int64(pageSize)).
+		SetSort(bson.D{{Key: "name", Value: 1}})
 
+	// ✅ Use the ObjectID for filtering
 	filter := bson.M{"county_id": objectID}
+
 	cursor, err := s.collection.Find(ctx, filter, opts)
 	if err != nil {
 		logger.Error("Failed to fetch wards by county", zap.Error(err), zap.String("county_id", countyID))
@@ -99,6 +105,37 @@ func (s *WardService) GetByCountyID(ctx context.Context, countyID string, page, 
 	total, err := s.collection.CountDocuments(ctx, filter)
 	if err != nil {
 		logger.Error("Failed to count wards", zap.Error(err))
+		return nil, 0, err
+	}
+
+	return wards, total, nil
+}
+
+// GetByCountyID retrieves wards by constituency ID
+func (s *WardService) GetByConstituencyID(ctx context.Context, constituencyID string, page, pageSize int) ([]models.Ward, int64, error) {
+	objectID, err := primitive.ObjectIDFromHex(constituencyID)
+	if err != nil {
+		return nil, 0, fmt.Errorf("invalid constituency ID: %v", err)
+	}
+
+	filter := bson.M{"constituency_id": objectID}
+
+	skip := int64((page - 1) * pageSize)
+	limit := int64(pageSize)
+
+	cursor, err := s.collection.Find(ctx, filter, options.Find().SetSkip(skip).SetLimit(limit))
+	if err != nil {
+		return nil, 0, err
+	}
+	defer cursor.Close(ctx)
+
+	var wards []models.Ward
+	if err := cursor.All(ctx, &wards); err != nil {
+		return nil, 0, err
+	}
+
+	total, err := s.collection.CountDocuments(ctx, filter)
+	if err != nil {
 		return nil, 0, err
 	}
 
