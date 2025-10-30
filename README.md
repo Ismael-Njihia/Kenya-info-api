@@ -1,5 +1,10 @@
 # Kenya Info API 🇰🇪
 
+API: 
+
+https://kenya-info-api.onrender.com/health
+
+
 [![CI/CD Pipeline](https://github.com/Ismael-Njihia/Kenya-info-api/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Ismael-Njihia/Kenya-info-api/actions/workflows/ci-cd.yml)
 [![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://golang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
