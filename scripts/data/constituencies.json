@@ -1,0 +1,777 @@
+[
+
+  {
+    "name": "Changamwe",
+    "county_name": "Mombasa",
+    "mp": "Omar Mwinyi Shimbwa",
+    "population": 93561,
+    "area": null
+  },
+  {
+    "name": "Jomvu",
+    "county_name": "Mombasa",
+    "mp": "Badi Twalib Bady",
+    "population": 75085,
+    "area": null
+  },
+  {
+    "name": "Kisauni",
+    "county_name": "Mombasa",
+    "mp": "Rashid Juma Bedzimba",
+    "population": 135276,
+    "area": null
+  },
+  {
+    "name": "Nyali",
+    "county_name": "Mombasa",
+    "mp": "Mohamed Mohamed Ali",
+    "population": 124253,
+    "area": null
+  },
+  {
+    "name": "Likoni",
+    "county_name": "Mombasa",
+    "mp": "Mishi Juma Khamisi Mboko",
+    "population": 94764,
+    "area": null
+  },
+  {
+    "name": "Mvita",
+    "county_name": "Mombasa",
+    "mp": "Machele Mohamed Soud",
+    "population": 118974,
+    "area": null
+  },
+
+  {
+    "name": "Msambweni",
+    "county_name": "Kwale",
+    "mp": "Salim Feisal Abdallah Bader",
+    "population": 82261,
+    "area": null
+  },
+  {
+    "name": "Lunga Lunga",
+    "county_name": "Kwale",
+    "mp": "Mangale Munga Chiforomodo",
+    "population": 64854,
+    "area": null
+  },
+  {
+    "name": "Matuga",
+    "county_name": "Kwale",
+    "mp": "Kassim Sawa Tandaza",
+    "population": 83015,
+    "area": null
+  },
+  {
+    "name": "Kinango",
+    "county_name": "Kwale",
+    "mp": "Samuel Gonzi Rai",
+    "population": 98123,
+    "area": null
+  },
+
+  {
+    "name": "Kilifi North",
+    "county_name": "Kilifi",
+    "mp": "Owen Baya",
+    "population": 116742,
+    "area": 405.0
+  },
+  {
+    "name": "Kilifi South",
+    "county_name": "Kilifi",
+    "mp": "Richard Kiti Ken Chonga",
+    "population": 97696,
+    "area": 401.0
+  },
+  {
+    "name": "Kaloleni",
+    "county_name": "Kilifi",
+    "mp": "Paul Kahindi Katana",
+    "population": 73009,
+    "area": 651.0
+  },
+  {
+    "name": "Rabai",
+    "county_name": "Kilifi",
+    "mp": "Anthony Mupe Kenga",
+    "population": 73009,
+    "area": 241.0
+  },
+  {
+    "name": "Ganze",
+    "county_name": "Kilifi",
+    "mp": "Kenneth Charo Kazungu",
+    "population": 137664,
+    "area": 2942.0
+  },
+  {
+    "name": "Malindi",
+    "county_name": "Kilifi",
+    "mp": "Amina Mnyazi Laura",
+    "population": 162712,
+    "area": 627.0
+  },
+  {
+    "name": "Magarini",
+    "county_name": "Kilifi",
+    "mp": "Harrison Garama Kombe",
+    "population": 177241,
+    "area": 6979.0
+  },
+  {
+    "name": "Bura",
+    "county_name": "Tana River",
+    "mp": "Kuno Yakub Adow",
+    "population": 44834,
+    "area": null
+  },
+  {
+    "name": "Galole",
+    "county_name": "Tana River",
+    "mp": "Said Buya Hiribae",
+    "population": 45689,
+    "area": null
+  },
+  {
+    "name": "Garsen",
+    "county_name": "Tana River",
+    "mp": "Ibrahim Ahmed Sane",
+    "population": 37576,
+    "area": null
+  },
+
+  {
+    "name": "Lamu East",
+    "county_name": "Lamu",
+    "mp": "Ruweida Mohamed Obo",
+    "population": 22047,
+    "area": 2336.7
+  },
+  {
+    "name": "Lamu West",
+    "county_name": "Lamu",
+    "mp": "Stanley Muiruri Muthama",
+    "population": 59406,
+    "area": null
+  },
+
+  {
+    "name": "Voi",
+    "county_name": "Taita-Taveta",
+    "mp": "Khamis Chome Abdi",
+    "population": 61377,
+    "area": null
+  },
+  {
+    "name": "Mwatate",
+    "county_name": "Taita-Taveta",
+    "mp": "Andrew Mwadime",
+    "population": 44411,
+    "area": null
+  },
+  {
+    "name": "Wundanyi",
+    "county_name": "Taita-Taveta",
+    "mp": "Thoma Mwadeghu",
+    "population": null,
+    "area": null
+  },
+  {
+    "name": "Taveta",
+    "county_name": "Taita-Taveta",
+    "mp": "Naomi Shaban",
+    "population": null,
+    "area": null
+  },
+  {
+    "name": "Garissa Township",
+    "county_name": "Garissa",
+    "mp": "Dekow Barrow Mohamed",
+    "population": 53253,
+    "area": null
+  },
+  {
+    "name": "Balambala",
+    "county_name": "Garissa",
+    "mp": "Abdi Omar Shurie",
+    "population": 26085,
+    "area": null
+  },
+  {
+    "name": "Dadaab",
+    "county_name": "Garissa",
+    "mp": "Farah Maalim Mohamed",
+    "population": 25762,
+    "area": null
+  },
+  {
+    "name": "Fafi",
+    "county_name": "Garissa",
+    "mp": "Farah Salah Yakub",
+    "population": 19883,
+    "area": null
+  },
+  {
+    "name": "Ijara",
+    "county_name": "Garissa",
+    "mp": "Abdi Ali Abdi",
+    "population": 22722,
+    "area": null
+  },
+  {
+    "name": "Lagdera",
+    "county_name": "Garissa",
+    "mp": "Mohamed Abdikadir Hussein",
+    "population": 20547,
+    "area": null
+  },
+  {
+    "name": "Wajir South",
+    "county_name": "Wajir",
+    "mp": "Adow Aden Mohamed",
+    "population": 58077,
+    "area": null
+  },
+  {
+    "name": "Wajir East",
+    "county_name": "Wajir",
+    "mp": "MOHAMED ADEN DAUDI",
+    "population": 35794,
+    "area": null
+  },
+  {
+    "name": "Tarbaj",
+    "county_name": "Wajir",
+    "mp": "Barre Hussein Abdi",
+    "population": 24321,
+    "area": null
+  },
+  {
+    "name": "Eldas",
+    "county_name": "Wajir",
+    "mp": "Aden Keynan",
+    "population": 25312,
+    "area": null
+  },
+  {
+    "name": "Wajir West",
+    "county_name": "Wajir",
+    "mp": "Farah Yussuf Mohamed",
+    "population": 19802,
+    "area": null
+  },
+  {
+    "name": "Wajir North",
+    "county_name": "Wajir",
+    "mp": "Ibrahim Abdi Saney",
+    "population": 22652,
+    "area": null
+  },
+  {
+    "name": "Mandera West",
+    "county_name": "Mandera",
+    "mp": "Adan Haji Yussuf",
+    "population": 267901,
+    "area": null
+  },
+  {
+    "name": "Banissa",
+    "county_name": "Mandera",
+    "mp": "Hon. Adan Maalim Mohammed",
+    "population": 261891,
+    "area": null
+  },
+  {
+    "name": "Mandera North",
+    "county_name": "Mandera",
+    "mp": "Abdullahi Bashir Sheikh",
+    "population": 231498,
+    "area": null
+  },
+  {
+    "name": "Mandera South",
+    "county_name": "Mandera",
+    "mp": "Haro Abdul Ebrahim",
+    "population": 410247,
+    "area": null
+  },
+  {
+    "name": "Mandera East",
+    "county_name": "Mandera",
+    "mp": "Hon. Hassan Omar Mohamed Maalim",
+    "population": 296281,
+    "area": null
+  },
+  {
+    "name": "Lafey",
+    "county_name": "Mandera",
+    "mp": "HON. ABDIRAHMAN MOHAMED ABDI",
+    "population": 182006,
+    "area": null
+  },
+  {
+    "name": "Moyale",
+    "county_name": "Marsabit",
+    "mp": "Wario Qalicha Gufu",
+    "population": 66402,
+    "area": null
+  },
+  {
+    "name": "North Horr",
+    "county_name": "Marsabit",
+    "mp": "Francis Chachu Ganya",
+    "population": 36855,
+    "area": null
+  },
+  {
+    "name": "Saku",
+    "county_name": "Marsabit",
+    "mp": "Dido Ali Rasso",
+    "population": 30209,
+    "area": null
+  },
+  {
+    "name": "Laisamis",
+    "county_name": "Marsabit",
+    "mp": "Joseph Lemasolai Lekuton",
+    "population": 33446,
+    "area": 20266.0
+  },
+  {
+    "name": "Isiolo North",
+    "county_name": "Isiolo",
+    "mp": "Joseph Samal Lomwa",
+    "population": 67323,
+    "area": null
+  },
+  {
+    "name": "Isiolo South",
+    "county_name": "Isiolo",
+    "mp": "Mohamed Tubi Bidu",
+    "population": 22181,
+    "area": 9817.0
+  },
+  {
+    "name": "Igembe South",
+    "county_name": "Meru",
+    "mp": "John Paul Mwirigi",
+    "population": 77126,
+    "area": null
+  },
+  {
+    "name": "Igembe Central",
+    "county_name": "Meru",
+    "mp": "Daniel Kiili Karitho",
+    "population": 93434,
+    "area": null
+  },
+  {
+    "name": "Igembe North",
+    "county_name": "Meru",
+    "mp": "Julius Taitumu Manaiba",
+    "population": 77050,
+    "area": null
+  },
+  {
+    "name": "Tigania West",
+    "county_name": "Meru",
+    "mp": "John (Dr.) Mutunga",
+    "population": 70283,
+    "area": null
+  },
+  {
+    "name": "Tigania East",
+    "county_name": "Meru",
+    "mp": "Lawrence Mpuru Aburi",
+    "population": 83527,
+    "area": null
+  },
+  {
+    "name": "North Imenti",
+    "county_name": "Meru",
+    "mp": "Abdul Rahim Dawood",
+    "population": 96241,
+    "area": null
+  },
+  {
+    "name": "Buuri",
+    "county_name": "Meru",
+    "mp": "Mugambi Murwithania Rindikiri",
+    "population": 82341,
+    "area": 69.21
+  },
+  {
+    "name": "Central Imenti",
+    "county_name": "Meru",
+    "mp": "Moses Nguchine Kirima",
+    "population": 76495,
+    "area": null
+  },
+  {
+    "name": "South Imenti",
+    "county_name": "Meru",
+    "mp": "Shadrack Mwiti Ithinji",
+    "population": 115642,
+    "area": null
+  },
+    {
+    "name": "Tharaka",
+    "county_name": "Tharaka-Nithi",
+    "mp": "George Gitonga Murugara",
+    "population": 52620,
+    "area": null
+  },
+  {
+    "name": "Chuka/Igambang’ombe",
+    "county_name": "Tharaka-Nithi",
+    "mp": "Patrick Munene Ntwiga",
+    "population": 87213,
+    "area": null
+  },
+  {
+    "name": "Maara",
+    "county_name": "Tharaka-Nithi",
+    "mp": "Kareke Mbiuki",
+    "population": 73642,
+    "area": null
+  },
+{
+    "name": "Manyatta",
+    "county_name": "Embu",
+    "mp": "John Gitonga Mukunji",
+    "population": 99310,
+    "area": null
+  },
+  {
+    "name": "Runyenjes",
+    "county_name": "Embu",
+    "mp": "Karemba, Eric Muchangi",
+    "population": 87234,
+    "area": null
+  },
+  {
+    "name": "Mbeere North",
+    "county_name": "Embu",
+    "mp": "Njagagua, Charles Muriuki",
+    "population": 77549,
+    "area": null
+  },
+  {
+    "name": "Mbeere South",
+    "county_name": "Embu",
+    "mp": "Muriuki Nebart Bernard",
+    "population": 91248,
+    "area": null
+  },
+  {
+    "name": "Mwingi North",
+    "county_name": "Kitui",
+    "mp": "Paul Nzengu",
+    "population": 84320,
+    "area": null
+  },
+  {
+    "name": "Mwingi West",
+    "county_name": "Kitui",
+    "mp": "Charles Nguna",
+    "population": 77684,
+    "area": null
+  },
+  {
+    "name": "Mwingi Central",
+    "county_name": "Kitui",
+    "mp": "Gideon Mulyungi",
+    "population": 90472,
+    "area": null
+  },
+  {
+    "name": "Kitui West",
+    "county_name": "Kitui",
+    "mp": "Edith Nyenze",
+    "population": 93527,
+    "area": null
+  },
+  {
+    "name": "Kitui Rural",
+    "county_name": "Kitui",
+    "mp": "David Mwalika Mboni",
+    "population": 86542,
+    "area": null
+  },
+  {
+    "name": "Kitui Central",
+    "county_name": "Kitui",
+    "mp": "Benedict Mutua Mwalali",
+    "population": 99214,
+    "area": null
+  },
+  {
+    "name": "Kitui East",
+    "county_name": "Kitui",
+    "mp": "Nimrod Mbai",
+    "population": 90234,
+    "area": null
+  },
+  {
+    "name": "Kitui South",
+    "county_name": "Kitui",
+    "mp": "Rachel Kaki Nyamai",
+    "population": 113560,
+    "area": null
+  }, 
+  { "name": "Machakos Town", "county_name": "Machakos", "mp": "Caleb Mutiso Mule", "population": 199211, "area": 925.0 },
+  { "name": "Mavoko",        "county_name": "Machakos", "mp": "Patrick Makau King'ola", "population": null, "area": null },
+  { "name": "Masinga",       "county_name": "Machakos", "mp": "Joshua Mbithi Mwalyo", "population": 106836, "area": 1410.9 },
+  { "name": "Yatta",         "county_name": "Machakos", "mp": "Charles Mutavi Kilonzo", "population": 172583, "area": 1057.30 },
+  { "name": "Kangundo",      "county_name": "Machakos", "mp": "Fabian Kyule Muli", "population": null, "area": null },
+  { "name": "Kathiani",      "county_name": "Machakos", "mp": "Robert Mbui", "population": 126419, "area": 207.0 },
+  { "name": "Matungulu",     "county_name": "Machakos", "mp": "Stephen Mutinda Mule", "population": 161557, "area": 581.4 },
+  { "name": "Mwala",         "county_name": "Machakos", "mp": "Vincent Musyoka Musau", "population": null, "area": null },
+
+  { "name": "Makueni",       "county_name": "Makueni", "mp": "Suzanne Ndunge Kiamba (Susan Kiamba)", "population": null, "area": null },
+  { "name": "Mbooni",        "county_name": "Makueni", "mp": "Erastus Nzioka Kivasu", "population": 88134, "area": null },
+  { "name": "Kaiti",         "county_name": "Makueni", "mp": "Joshua Kivinda Kimilu", "population": null, "area": null },
+  { "name": "Kilome",        "county_name": "Makueni", "mp": "Thudeeus (Thaddeus) Kithua Nzambia", "population": null, "area": null },
+  { "name": "Kibwezi West",  "county_name": "Makueni", "mp": "Eckomas Mwengi Mutuse", "population": null, "area": null },
+  { "name": "Kibwezi East",  "county_name": "Makueni", "mp": "Jessica Nduku Kiko Mbalu", "population": null, "area": null },
+
+  { "name": "Kinangop",      "county_name": "Nyandarua", "mp": "Zachary Kwenya Thuku", "population": null, "area": null },
+  { "name": "Kipipiri",      "county_name": "Nyandarua", "mp": "Wanjiku Muhia", "population": null, "area": null },
+  { "name": "Ndaragwa",      "county_name": "Nyandarua", "mp": "George Gachagua", "population": null, "area": null },
+  { "name": "Ol Kalou",       "county_name": "Nyandarua", "mp": "David Njuguna Kiaraho", "population": null, "area": null },
+  { "name": "Ol Jorok",      "county_name": "Nyandarua", "mp": "Michael Mwangi Muchira", "population": null, "area": null },
+  { "name": "Nyeri Town",   "county_name": "Nyeri",    "mp": "Duncan Mathenge ", "population": null, "area": null },
+  { "name": "Mukurwe-ini",  "county_name": "Nyeri",    "mp": "John Philip Kaguchia", "population": null, "area": null },
+  { "name": "Othaya",       "county_name": "Nyeri",    "mp": "Michael Wambugu Wainaina", "population": null, "area": null },
+  { "name": "Kieni",        "county_name": "Nyeri",    "mp": "Anthony Njoroge Wainaina", "population": null, "area": null },
+  { "name": "Tetu",         "county_name": "Nyeri",    "mp": "Geoffrey Mwangi Wandeto", "population": null, "area": null },
+  { "name": "Mathira",      "county_name": "Nyeri",    "mp": "Eric Wa Mumbi (", "population": null, "area": null },
+
+  { "name": "Mwea",         "county_name": "Kirinyaga", "mp": "Mary Maingi", "population": null, "area": null },
+  { "name": "Gichugu",      "county_name": "Kirinyaga", "mp": "Robert Gichimu Githinji", "population": null, "area": null },
+  { "name": "Ndia",         "county_name": "Kirinyaga", "mp": "George Macharia Kariuki", "population": null, "area": null },
+  { "name": "Kirinyaga Central", "county_name": "Kirinyaga", "mp": "Joseph Gachoki Gitari", "population": null, "area": null },
+
+  { "name": "Kiharu",       "county_name": "Murang'a", "mp": "Samson Ndindi Nyoro", "population": null, "area": null },
+  { "name": "Mathioya",     "county_name": "Murang'a", "mp": "Edwin Gichuki Mugo", "population": null, "area": null },
+  { "name": "Kangema",      "county_name": "Murang'a", "mp": "Peter Irungu Kihungi", "population": null, "area": null },
+  { "name": "Kigumo",       "county_name": "Murang'a", "mp": "George Gitonga Murugara", "population": null, "area": null },
+  { "name": "Kandara",      "county_name": "Murang'a", "mp": "Alice Muthoni Wahome", "population": null, "area": null },
+  { "name": "Maragua",      "county_name": "Murang'a", "mp": "Mary Wamaua Njoroge", "population": null, "area": null },
+  { "name": "Gatanga",      "county_name": "Murang'a", "mp": "Edward Wakili Muriu", "population": null, "area": null },
+
+{ "name": "Gatundu South", "county_name": "Kiambu", "mp": "Joseph Ngugi Nyumu", "population": null, "area": null },
+{ "name": "Gatundu North", "county_name": "Kiambu", "mp": "Francis Kigo Njenga", "population": null, "area": null },
+{ "name": "Juja", "county_name": "Kiambu", "mp": "Francis Munyua Waititu", "population": null, "area": null },
+{ "name": "Thika Town", "county_name": "Kiambu", "mp": "Alice Wambui", "population": null, "area": null },
+{ "name": "Ruiru", "county_name": "Kiambu", "mp": "Esther Nyambura Gathogo", "population": null, "area": null },
+{ "name": "Githunguri", "county_name": "Kiambu", "mp": "Peter Njoroge Baiya", "population": null, "area": null },
+{ "name": "Kiambaa", "county_name": "Kiambu", "mp": "Paul Koinange", "population": null, "area": null },
+{ "name": "Kabete", "county_name": "Kiambu", "mp": "George Mukuru Muchai", "population": null, "area": null },
+{ "name": "Kiambu", "county_name": "Kiambu", "mp": "Jude L. Kangethe Njomo", "population": null, "area": null },
+{ "name": "Kikuyu", "county_name": "Kiambu", "mp": "Anthony Kimani", "population": null, "area": null },
+{ "name": "Limuru", "county_name": "Kiambu", "mp": "John Kiragu Chege", "population": null, "area": null },
+{ "name": "Lari", "county_name": "Kiambu", "mp": "Joseph Mburu Kahangara", "population": null, "area": null },
+
+{ "name": "Turkana East", "county_name": "Turkana", "mp": "Nicholas Ngikor Nixon", "population": null, "area": null },
+{ "name": "Turkana South", "county_name": "Turkana", "mp": "James Lomenen Ekomwa", "population": null, "area": null },
+{ "name": "Loima", "county_name": "Turkana", "mp": "Protus Ewesit Akujah", "population": null, "area": null },
+{ "name": "Turkana Central", "county_name": "Turkana", "mp": "John Lodepe Nakara", "population": null, "area": null },
+{ "name": "Turkana North", "county_name": "Turkana", "mp": "Christopher Doye Nakuleu", "population": null, "area": null },
+{ "name": "Turkana West", "county_name": "Turkana", "mp": "Daniel Epuyo Nanok", "population": null, "area": null },
+
+{ "name": "Kapenguria", "county_name": "West Pokot", "mp": "Samuel Moroto Chumel", "population": null, "area": null },
+{ "name": "Kacheliba", "county_name": "West Pokot", "mp": "Titus Lotee", "population": null, "area": null },
+{ "name": "Sigor", "county_name": "West Pokot", "mp": "Peter Lochakapong", "population": null, "area": null },
+{ "name": "Pokot South", "county_name": "West Pokot", "mp": "David Pkosing Losiakou", "population": null, "area": null },
+{ "name": "Samburu East",  "county_name": "Samburu", "mp": "Lentoijoni Jackson Lekumontare", "population": 26085, "area": null },
+  { "name": "Samburu North", "county_name": "Samburu", "mp": "Dominic Eli Letipila",   "population": 29808, "area": null },
+  { "name": "Samburu West",  "county_name": "Samburu", "mp": "Naisula Josephine Lesuuda","population": 43293, "area": null },
+
+
+  { "name": "Kiminini",  "county_name": "Trans Nzoia", "mp": "Maurice Kakai Bisau",      "population": 93240, "area": null },
+  { "name": "Cherangany","county_name": "Trans Nzoia", "mp": "Patrick Simiyu Barasa",   "population": 91830, "area": null },
+  { "name": "Saboti",    "county_name": "Trans Nzoia", "mp": "Caleb Amisi Luyai",       "population": 87384, "area": null },
+  { "name": "Kwanza",    "county_name": "Trans Nzoia", "mp": "Ferdinand Kevin Wanyonyi","population": 75839, "area": null },
+  { "name": "Endebess",  "county_name": "Trans Nzoia", "mp": "Robert Y. Pukose",        "population": 50688, "area": null },
+
+
+  { "name": "Ainabkoi", "county_name": "Uasin Gishu", "mp": "Samuel Chepkonga",        "population": 60698, "area": null },
+  { "name": "Kapseret", "county_name": "Uasin Gishu", "mp": "Oscar Kipchumba Sudi",    "population": 74536, "area": null },
+  { "name": "Kesses",   "county_name": "Uasin Gishu", "mp": "James Kimaru Bett",       "population": 77992, "area": null },
+  { "name": "Moiben",   "county_name": "Uasin Gishu", "mp": "Phyllis Jepkemoi Bartoo", "population": 120202, "area": null },
+  { "name": "Soy",      "county_name": "Uasin Gishu", "mp": "Edwin Kipruto Barchilei", "population": 92433, "area": null },
+  { "name": "Turbo",    "county_name": "Uasin Gishu", "mp": "Janet Jepkemboi Sitienei", "population": 120202, "area": null },
+    
+  { "name": "Keiyo North",   "county_name": "Elgeyo-Marakwet", "mp": "Adams Kipsanai",            "population": null, "area": null },
+  { "name": "Keiyo South",   "county_name": "Elgeyo-Marakwet", "mp": "Gideon Kimaiyo",            "population": null, "area": null },
+  { "name": "Marakwet East", "county_name": "Elgeyo-Marakwet", "mp": "David Kangongo Bowen",      "population": null, "area": null },
+  { "name": "Marakwet West", "county_name": "Elgeyo-Marakwet", "mp": "Timothy Kipchumba Toroitich", "population": null, "area": null },
+
+ 
+  { "name": "Mosop",        "county_name": "Nandi", "mp": "Abraham Kipsang Kirwa",   "population": null, "area": null },
+  { "name": "Emgwen",       "county_name": "Nandi", "mp": "Josses Lelmengit",       "population": null, "area": null },
+  { "name": "Nandi Hills",  "county_name": "Nandi", "mp": "Bernard Kibor Kitur",    "population": null, "area": null },
+  { "name": "Aldai",        "county_name": "Nandi", "mp": "Marianne Jebet Kitany",  "population": null, "area": null },
+  { "name": "Tinderet",     "county_name": "Nandi", "mp": "Julius Melly",           "population": null, "area": null },
+  { "name": "Chesumei",     "county_name": "Nandi", "mp": "Paul Kibichy Biego",     "population": null, "area": null },
+
+  { "name": "Baringo Central", "county_name": "Baringo", "mp": "Joshua Chepyegon Kandie", "population": null, "area": null },
+  { "name": "Baringo North",   "county_name": "Baringo", "mp": "Joseph Makilap",            "population": null, "area": null },
+  { "name": "Baringo South",   "county_name": "Baringo", "mp": "Grace Jelagat Kipchoim",     "population": null, "area": null },
+  { "name": "Mogotio",         "county_name": "Baringo", "mp": "Reuben Kiborek",            "population": null, "area": null },
+  { "name": "Eldama Ravine",   "county_name": "Baringo", "mp": "Musa Cherutich Sirma",      "population": null, "area": null },
+  { "name": "Tiaty",           "county_name": "Baringo", "mp": "William Kassait Kamket",   "population": null, "area": null },
+
+  { "name": "Laikipia East", "county_name": "Laikipia", "mp": "Festus Mwangi Kiunjuri", "population": null, "area": null },
+  { "name": "Laikipia West", "county_name": "Laikipia", "mp": "Wachira Karani",           "population": null, "area": null },
+  { "name": "Laikipia North","county_name": "Laikipia", "mp": "Sara Paulata Korere",     "population": null, "area": null },
+
+  { "name": "Bahati",             "county_name": "Nakuru", "mp": "Irene Mrembo Njoki",          "population": null, "area": null },
+  { "name": "Gilgil",             "county_name": "Nakuru", "mp": "Martha Wangari",             "population": null, "area": null },
+  { "name": "Kuresoi North",      "county_name": "Nakuru", "mp": "Moses Kipkemboi Cheboi",     "population": null, "area": null },
+  { "name": "Kuresoi South",      "county_name": "Nakuru", "mp": "Joseph Kipkosgei Tonui",     "population": null, "area": null },
+  { "name": "Molo",               "county_name": "Nakuru", "mp": "Kuria Kimani",                "population": null, "area": null },
+  { "name": "Naivasha",           "county_name": "Nakuru", "mp": "Jayne Kihara",               "population": null, "area": null },
+  { "name": "Nakuru Town East",   "county_name": "Nakuru", "mp": "David Gikaria",              "population": null, "area": null },
+  { "name": "Nakuru Town West",   "county_name": "Nakuru", "mp": "Samuel Arama",               "population": null, "area": null },
+  { "name": "Njoro",              "county_name": "Nakuru", "mp": "Charity Gathambi",           "population": null, "area": null },
+  { "name": "Rongai",             "county_name": "Nakuru", "mp": "Kipruto Moi",                "population": null, "area": null },
+  { "name": "Subukia",            "county_name": "Nakuru", "mp": "Samuel Kinuthia Gachobe",    "population": null, "area": null },
+
+  { "name": "Emurua Dikirr", "county_name": "Narok", "mp": "Johana Ngeno Kipyegon", "population": null, "area": null },
+  { "name": "Kilgoris",      "county_name": "Narok", "mp": "Gideon Sitelu Konchella", "population": null, "area": null },
+  { "name": "Narok East",    "county_name": "Narok", "mp": "Lemanken Aramat", "population": null, "area": null },
+  { "name": "Narok North",   "county_name": "Narok", "mp": "Agnes Mantaine Pareyio", "population": null, "area": null },
+  { "name": "Narok South",   "county_name": "Narok", "mp": "Kitilai Ole Ntutu", "population": null, "area": null },
+  { "name": "Narok West",    "county_name": "Narok", "mp": "Gabriel Koshal Tongoyo", "population": null, "area": null },
+
+ 
+  { "name": "Kajiado North",  "county_name": "Kajiado", "mp": "Joseph Wathigo Manje", "population": null, "area": null },
+  { "name": "Kajiado East",   "county_name": "Kajiado", "mp": "Peris P. Tobiko", "population": null, "area": null },
+  { "name": "Kajiado Central","county_name": "Kajiado", "mp": "Elijah Memusi Kanchory", "population": null, "area": null },
+  { "name": "Kajiado West",   "county_name": "Kajiado", "mp": "George Risa Sunkuyia", "population": null, "area": null },
+  { "name": "Kajiado South",  "county_name": "Kajiado", "mp": "Judah Katoo Ole Metito", "population": null, "area": null },
+
+ 
+  { "name": "Ainamoi",      "county_name": "Kericho", "mp": "Benjamin Kipkirui Langat", "population": null, "area": null },
+  { "name": "Belgut",       "county_name": "Kericho", "mp": "Nelson Koech", "population": null, "area": null },
+  { "name": "Bureti",       "county_name": "Kericho", "mp": "Kibet Kirui Komingoi", "population": null, "area": null },
+  { "name": "Kipkelion East","county_name": "Kericho", "mp": "Joseph Cherorot", "population": null, "area": null },
+  { "name": "Kipkelion West","county_name": "Kericho", "mp": "Hillary (Wakili) Sigei", "population": null, "area": null },
+  { "name": "Sigowet/Soin", "county_name": "Kericho", "mp": "Justice Kipsang Kemei", "population": null, "area": null },
+
+  { "name": "Bomet East",     "county_name": "Bomet",     "mp": "Yegon, Richard Kipkemoi",        "population": null, "area": null },
+  { "name": "Bomet Central",  "county_name": "Bomet",     "mp": "Kilel Richard",       "population": null, "area": null },
+  { "name": "Chepalungu",     "county_name": "Bomet",     "mp": "Victor Koech",                  "population": null, "area": null },
+  { "name": "Konoin",         "county_name": "Bomet",     "mp": "Yegon Leonard", "population": null, "area": null },
+  { "name": "Sotik",     "county_name": "Bomet",     "mp": "Koskei Dominic",     "population": null, "area": null },
+
+  { "name": "Lugari",        "county_name": "Kakamega", "mp": "Nabii Nabwera",               "population": null, "area": null },
+  { "name": "Likuyani",      "county_name": "Kakamega", "mp": "Innocent Mugabe",             "population": null, "area": null },
+  { "name": "Malava",        "county_name": "Kakamega", "mp": "Moses Malulu Injendi",        "population": null, "area": null },
+  { "name": "Lurambi",       "county_name": "Kakamega", "mp": "Bishop Titus Khamala Mukhwana","population": null, "area": null },
+  { "name": "Navakholo",     "county_name": "Kakamega", "mp": "Emmanuel Wangwe",             "population": null, "area": null },
+  { "name": "Mumias West",   "county_name": "Kakamega", "mp": "Johnson Naicca",              "population": null, "area": null },
+  { "name": "Mumias East",   "county_name": "Kakamega", "mp": "Peter Salasya",               "population": null, "area": null },
+  { "name": "Matungu",       "county_name": "Kakamega", "mp": "Peter Nabulindo",             "population": null, "area": null },
+  { "name": "Butere",        "county_name": "Kakamega", "mp": "Tindi Mwale",                 "population": null, "area": null },
+  { "name": "Khwisero",      "county_name": "Kakamega", "mp": "Christopher Aseka Wangaya",   "population": null, "area": null },
+  { "name": "Shinyalu",      "county_name": "Kakamega", "mp": "Fred Ikana",                  "population": null, "area": null },
+  { "name": "Ikolomani",     "county_name": "Kakamega", "mp": "Benard Shinali",              "population": null, "area": null },
+
+  { "name": "Vihiga",   "county_name": "Vihiga",  "mp": "Kagesi Ernest", "population": null, "area": null },
+  { "name": "Sabatia",  "county_name": "Vihiga",  "mp": "Alfred Ogesi Kivai", "population": null, "area": null },
+  { "name": "Emuhaya",  "county_name": "Vihiga",  "mp": "Omboko Milemba", "population": null, "area": null },
+  { "name": "Hamisi",   "county_name": "Vihiga",  "mp": "Charles Gumini",     "population": null, "area": null },
+  { "name": "Luanda",   "county_name": "Vihiga",  "mp": "Christopher Omulele", "population": null, "area": null },
+
+  
+  {"name": "Bumula",      "county_name": "Bungoma", "mp": "Jack Wamboka Wanami",    "population": null, "area": null },
+  { "name": "Kabuchai",    "county_name": "Bungoma", "mp": "Joseph (Majimbo) Kalasinga", "population": null, "area": null },
+  { "name": "Kanduyi",     "county_name": "Bungoma", "mp": "John Makali",            "population": null, "area": null },
+  { "name": "Kimilili",    "county_name": "Bungoma", "mp": "Didmus Wekesa Barasa",  "population": null, "area": null },
+  { "name": "Mt. Elgon",   "county_name": "Bungoma", "mp": "Fred (Chesebe) Kapondi", "population": null, "area": null },
+  { "name": "Sirisia",     "county_name": "Bungoma", "mp": "John Koyi Waluke",      "population": null, "area": null },
+  { "name": "Tongaren",    "county_name": "Bungoma", "mp": "John Murumba Chikati",  "population": null, "area": null },
+  { "name": "Webuye East", "county_name": "Bungoma", "mp": "Martin Wanyonyi Pepela", "population": null, "area": null },
+  { "name": "Webuye West", "county_name": "Bungoma", "mp": "Daniel Wanyama Sitati",  "population": null, "area": null },
+  
+  {"name": "Budalang'i",    "county_name": "Busia", "mp": "Rafael Wanjala",          "population": null, "area": null },
+  { "name": "Butula",        "county_name": "Busia", "mp": "Joseph Oyula",            "population": null, "area": null },
+  { "name": "Funyula",       "county_name": "Busia", "mp": "Dr. Ojiambo Oundo Mudenyo","population": null, "area": null },
+  { "name": "Matayos",       "county_name": "Busia", "mp": "Geoffrey Odanga",         "population": null, "area": null },
+  { "name": "Nambale",       "county_name": "Busia", "mp": "Geoffrey Mulanya Ekesa",  "population": null, "area": null },
+  { "name": "Teso North",    "county_name": "Busia", "mp": "Edward Oku Kaunya",       "population": null, "area": null },
+  { "name": "Teso South",    "county_name": "Busia", "mp": "Mary Emase",              "population": null, "area": null },
+
+  { "name": "Alego Usonga",   "county_name": "Siaya", "mp": "Samuel Atandi",         "population": null, "area": null },
+  { "name": "Gem",            "county_name": "Siaya", "mp": "Elisha Odhiambo",       "population": null, "area": null },
+  { "name": "Bondo",          "county_name": "Siaya", "mp": "Gideon Ochanda",        "population": null, "area": null },
+  { "name": "Ugenya",         "county_name": "Siaya", "mp": "David Ochieng",         "population": null, "area": null },
+  { "name": "Ugunja",         "county_name": "Siaya", "mp": "Opiyo Wandayi",         "population": null, "area": null },
+  { "name": "Rarieda",        "county_name": "Siaya", "mp": "Otiende Amollo",        "population": null, "area": null },
+
+  { "name": "Kisumu East",     "county_name": "Kisumu", "mp": "Shakeel Shabbir Ahmed",   "population": null, "area": null },
+  { "name": "Kisumu West",     "county_name": "Kisumu", "mp": "Rosa Buyu",               "population": null, "area": null },
+  { "name": "Kisumu Central",  "county_name": "Kisumu", "mp": "Joshua Oron",             "population": null, "area": null },
+  { "name": "Seme",            "county_name": "Kisumu", "mp": "James Nyikal",            "population": null, "area": null },
+  { "name": "Nyando",          "county_name": "Kisumu", "mp": "Jared Okelo",             "population": null, "area": null },
+  { "name": "Muhoroni",        "county_name": "Kisumu", "mp": "Onyango K'Oyoo",          "population": null, "area": null },
+  { "name": "Nyakach",         "county_name": "Kisumu", "mp": "Aduma Owuor",             "population": null, "area": null },
+
+  { "name": "Suba North",     "county_name": "Homa Bay", "mp": "Millie Grace Akoth Odhiambo", "population": null, "area": null },
+  { "name": "Suba South",     "county_name": "Homa Bay", "mp": "Caroli Omondi",              "population": null, "area": null },
+  { "name": "Mbita",          "county_name": "Homa Bay", "mp": "null (merged into Suba North)", "population": null, "area": null },
+  { "name": "Rangwe",         "county_name": "Homa Bay", "mp": "Lilian Gogo",                "population": null, "area": null },
+  { "name": "Karachuonyo",    "county_name": "Homa Bay", "mp": "Adipo Okuome",               "population": null, "area": null },
+  { "name": "Kasipul",        "county_name": "Homa Bay", "mp": "Charles Ong’ondo Were",      "population": null, "area": null },
+  { "name": "Kabondo Kasipul","county_name": "Homa Bay", "mp": "Eve Obara",                  "population": null, "area": null },
+  { "name": "Ndhiwa",         "county_name": "Homa Bay", "mp": "Martin Owino",               "population": null, "area": null },
+  { "name": "Homa Bay Town",  "county_name": "Homa Bay", "mp": "Peter Kaluma",               "population": null, "area": null },
+
+  { "name": "Rongo",           "county_name": "Migori", "mp": "Paul Abuor",              "population": null, "area": null },
+  { "name": "Awendo",          "county_name": "Migori", "mp": "Walter Owino",            "population": null, "area": null },
+  { "name": "Suna East",       "county_name": "Migori", "mp": "Junet Mohamed",           "population": null, "area": null },
+  { "name": "Suna West",       "county_name": "Migori", "mp": "Peter Masara",            "population": null, "area": null },
+  { "name": "Uriri",           "county_name": "Migori", "mp": "Mark Nyamita",            "population": null, "area": null },
+  { "name": "Nyatike",         "county_name": "Migori", "mp": "Tom Odege",               "population": null, "area": null },
+  { "name": "Kuria East",      "county_name": "Migori", "mp": "Marwa Kitayama",          "population": null, "area": null },
+  { "name": "Kuria West",      "county_name": "Migori", "mp": "Mathias Robi",            "population": null, "area": null },
+
+  { "name": "Bonchari",        "county_name": "Kisii", "mp": "Charles Onchoke",            "population": null, "area": null },
+  { "name": "South Mugirango", "county_name": "Kisii", "mp": "Silvanus Osoro",             "population": null, "area": null },
+  { "name": "Bomachoge Borabu","county_name": "Kisii", "mp": "Obadiah Barongo",            "population": null, "area": null },
+  { "name": "Bobasi",          "county_name": "Kisii", "mp": "Innocent Obiri Momanyi",     "population": null, "area": null },
+  { "name": "Nyaribari Masaba","county_name": "Kisii", "mp": "Elijah Moindi",              "population": null, "area": null },
+  { "name": "Nyaribari Chache","county_name": "Kisii", "mp": "Zaheer Jhanda",              "population": null, "area": null },
+  { "name": "Kitutu Chache North", "county_name": "Kisii", "mp": "Japhet Nyakundi",        "population": null, "area": null },
+  { "name": "Kitutu Chache South", "county_name": "Kisii", "mp": "Anthony Kibagendi",      "population": null, "area": null },
+
+  { "name": "West Mugirango",  "county_name": "Nyamira", "mp": "Stephen Mogaka",          "population": null, "area": null },
+  { "name": "North Mugirango", "county_name": "Nyamira", "mp": "Joash Nyamoko",           "population": null, "area": null },
+  { "name": "Borabu",          "county_name": "Nyamira", "mp": "Patrick Osero",           "population": null, "area": null },
+  { "name": "Kitutu Masaba",   "county_name": "Nyamira", "mp": "Clive Gisairo",           "population": null, "area": null },
+
+  { "name": "Westlands",          "county_name": "Nairobi", "mp": "Timothy Wanyonyi",         "population": null, "area": null },
+  { "name": "Dagoretti North",    "county_name": "Nairobi", "mp": "Beatrice Elachi",          "population": null, "area": null },
+  { "name": "Dagoretti South",    "county_name": "Nairobi", "mp": "John Kiarie (KJ)",         "population": null, "area": null },
+  { "name": "Lang'ata",           "county_name": "Nairobi", "mp": "Felix Odiwuor (Jalang'o)", "population": null, "area": null },
+  { "name": "Kibra",              "county_name": "Nairobi", "mp": "Peter Orero",              "population": null, "area": null },
+  { "name": "Roysambu",           "county_name": "Nairobi", "mp": "Augustine Kamande Kuria",  "population": null, "area": null },
+  { "name": "Kasarani",           "county_name": "Nairobi", "mp": "Ronald Karauri",           "population": null, "area": null },
+  { "name": "Ruaraka",            "county_name": "Nairobi", "mp": "Tom Kajwang'",             "population": null, "area": null },
+  { "name": "Embakasi South",     "county_name": "Nairobi", "mp": "Julius Mawathe",           "population": null, "area": null },
+  { "name": "Embakasi North",     "county_name": "Nairobi", "mp": "James Gakuya",             "population": null, "area": null },
+  { "name": "Embakasi Central",   "county_name": "Nairobi", "mp": "Benjamin Gathiru (Mejjadonk)", "population": null, "area": null },
+  { "name": "Embakasi East",      "county_name": "Nairobi", "mp": "Babu Owino",               "population": null, "area": null },
+  { "name": "Embakasi West",      "county_name": "Nairobi", "mp": "Mark Mwenje",              "population": null, "area": null },
+  { "name": "Makadara",           "county_name": "Nairobi", "mp": "George Aladwa",            "population": null, "area": null },
+  { "name": "Kamukunji",          "county_name": "Nairobi", "mp": "Yusuf Hassan",             "population": null, "area": null },
+  { "name": "Starehe",            "county_name": "Nairobi", "mp": "Amos Mwago",               "population": null, "area": null },
+  { "name": "Mathare",            "county_name": "Nairobi", "mp": "Anthony Oluoch",           "population": null, "area": null }
+
+]

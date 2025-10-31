@@ -2,216 +2,413 @@ package main
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"time"
 
 	"github.com/Ismael-Njihia/Kenya-info-api/internal/config"
 	"github.com/Ismael-Njihia/Kenya-info-api/internal/database"
 	"github.com/Ismael-Njihia/Kenya-info-api/internal/models"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-// -------- MAIN --------
+const dataDir = "scripts/data"
 
 func main() {
-	log.Println("🚀 Starting database seeding...")
+	log.Println("🚀 Starting production-ready seeder...")
 
-	// Load configuration
+	// load config
 	cfg, err := config.Load()
 	if err != nil {
-		log.Fatalf("❌ Failed to load configuration: %v", err)
+		log.Fatalf("failed to load config: %v", err)
 	}
 
-	// Connect to DB
 	db, err := database.Connect(&cfg.Database)
 	if err != nil {
-		log.Fatalf("❌ Failed to connect to database: %v", err)
+		log.Fatalf("failed to connect database: %v", err)
 	}
-	defer db.Client.Disconnect(context.Background())
+	defer func() {
+		_ = db.Client.Disconnect(context.Background())
+	}()
 
 	ctx := context.Background()
 
-	// Clear previous data
-	if err := clearCollections(ctx, db); err != nil {
-		log.Printf("⚠️ Warning clearing collections: %v", err)
-	}
+	// optionally clear collections first (commented by default)
+	// clearCollections(ctx, db)
 
-	// Seed data
-	countyIDs, err := seedCounties(ctx, db)
+	// Load JSON files
+	counties, err := loadCounties(dataDir + "/counties.json")
 	if err != nil {
-		log.Fatalf("❌ Failed to seed counties: %v", err)
+		log.Fatalf("loadCounties: %v", err)
 	}
-
-	constituencyIDs, err := seedConstituencies(ctx, db, countyIDs)
+	constituencies, err := loadConstituencies(dataDir + "/constituencies.json")
 	if err != nil {
-		log.Fatalf("❌ Failed to seed constituencies: %v", err)
+		log.Fatalf("loadConstituencies: %v", err)
 	}
-
-	wardIDs, err := seedWards(ctx, db, countyIDs, constituencyIDs)
+	wards, err := loadWards(dataDir + "/wards.json")
 	if err != nil {
-		log.Fatalf("❌ Failed to seed wards: %v", err)
+		log.Fatalf("loadWards: %v", err)
+	}
+	leaders, err := loadLeaders(dataDir + "/leaders.json")
+	if err != nil {
+		log.Fatalf("loadLeaders: %v", err)
 	}
 
-	if err := seedLeaders(ctx, db, countyIDs, constituencyIDs, wardIDs); err != nil {
-		log.Fatalf("❌ Failed to seed leaders: %v", err)
+	// Upsert counties (unique by Code OR Name)
+	countyMap, err := upsertCounties(ctx, db, counties)
+	if err != nil {
+		log.Fatalf("upsertCounties: %v", err)
 	}
 
-	log.Println("✅ Database seeding completed successfully!")
+	// Upsert constituencies (link to counties)
+	constMap, err := upsertConstituencies(ctx, db, constituencies, countyMap)
+	if err != nil {
+		log.Fatalf("upsertConstituencies: %v", err)
+	}
+
+	// Upsert wards (link to constituency & county)
+	wardMap, err := upsertWards(ctx, db, wards, countyMap, constMap)
+	if err != nil {
+		log.Fatalf("upsertWards: %v", err)
+	}
+
+	// Upsert leaders (link to county/constituency/ward where provided)
+	if err := upsertLeaders(ctx, db, leaders, countyMap, constMap, wardMap); err != nil {
+		log.Fatalf("upsertLeaders: %v", err)
+	}
+
+	log.Println("✅ Seeder finished successfully.")
 }
 
-// -------- CLEAR --------
+/* ---------- Helpers to load JSON ---------- */
 
-func clearCollections(ctx context.Context, db *database.Database) error {
-	collections := []string{"counties", "constituencies", "wards", "leaders"}
-	for _, name := range collections {
-		if err := db.GetCollection(name).Drop(ctx); err != nil {
-			return err
-		}
-		log.Printf("🧹 Cleared %s collection", name)
-	}
-	return nil
-}
-
-// -------- SEED COUNTIES --------
-
-func seedCounties(ctx context.Context, db *database.Database) (map[string]primitive.ObjectID, error) {
-	now := time.Now()
-	counties := []models.County{
-		{ID: primitive.NewObjectID(), Code: 47, Name: "Nairobi", Capital: "Nairobi", Population: 4397073, Area: 696, Governor: "Johnson Sakaja", CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Code: 22, Name: "Kisumu", Capital: "Kisumu City", Population: 1155574, Area: 567, Governor: "Anyang' Nyong’o", CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Code: 1, Name: "Mombasa", Capital: "Mombasa", Population: 1208333, Area: 219, Governor: "Abdulswamad Nassir", CreatedAt: now, UpdatedAt: now},
-	}
-
-	coll := db.GetCollection("counties")
-	docs := make([]interface{}, len(counties))
-	countyIDs := make(map[string]primitive.ObjectID)
-
-	for i, county := range counties {
-		docs[i] = county
-		countyIDs[county.Name] = county.ID
-	}
-
-	if _, err := coll.InsertMany(ctx, docs); err != nil {
-		return nil, err
-	}
-
-	log.Printf("🌍 Seeded %d counties", len(counties))
-	return countyIDs, nil
-}
-
-// -------- SEED CONSTITUENCIES --------
-
-func seedConstituencies(ctx context.Context, db *database.Database, countyIDs map[string]primitive.ObjectID) (map[string]primitive.ObjectID, error) {
-	now := time.Now()
-	constituencies := []models.Constituency{
-		{ID: primitive.NewObjectID(), Name: "Westlands", CountyID: countyIDs["Nairobi"], CountyName: "Nairobi", MP: "Timothy Wanyonyi", Population: 308854, Area: 72.4, CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Name: "Kisumu Central", CountyID: countyIDs["Kisumu"], CountyName: "Kisumu", MP: "Joshua Oron", Population: 221417, Area: 50.1, CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Name: "Mvita", CountyID: countyIDs["Mombasa"], CountyName: "Mombasa", MP: "Mohammed Machele", Population: 154063, Area: 14.8, CreatedAt: now, UpdatedAt: now},
-	}
-
-	coll := db.GetCollection("constituencies")
-	docs := make([]interface{}, len(constituencies))
-	constituencyIDs := make(map[string]primitive.ObjectID)
-
-	for i, c := range constituencies {
-		docs[i] = c
-		constituencyIDs[c.Name] = c.ID
-	}
-
-	if _, err := coll.InsertMany(ctx, docs); err != nil {
-		return nil, err
-	}
-
-	log.Printf("🏛️ Seeded %d constituencies", len(constituencies))
-	return constituencyIDs, nil
-}
-
-// -------- SEED WARDS --------
-
-func seedWards(ctx context.Context, db *database.Database, countyIDs map[string]primitive.ObjectID, constituencyIDs map[string]primitive.ObjectID) (map[string]primitive.ObjectID, error) {
-	now := time.Now()
-	wards := []models.Ward{
-		{ID: primitive.NewObjectID(), Name: "Parklands/Highridge", CountyID: countyIDs["Nairobi"], CountyName: "Nairobi", ConstituencyID: constituencyIDs["Westlands"], ConstituencyName: "Westlands", MCA: "Jayendra Malde", Population: 45000, Area: 15.4, CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Name: "Railways Ward", CountyID: countyIDs["Kisumu"], CountyName: "Kisumu", ConstituencyID: constituencyIDs["Kisumu Central"], ConstituencyName: "Kisumu Central", MCA: "Samuel Onyango", Population: 38000, Area: 9.3, CreatedAt: now, UpdatedAt: now},
-		{ID: primitive.NewObjectID(), Name: "Tudor Ward", CountyID: countyIDs["Mombasa"], CountyName: "Mombasa", ConstituencyID: constituencyIDs["Mvita"], ConstituencyName: "Mvita", MCA: "Abdallah Mbarak", Population: 29000, Area: 6.7, CreatedAt: now, UpdatedAt: now},
-	}
-
-	coll := db.GetCollection("wards")
-	docs := make([]interface{}, len(wards))
-	wardIDs := make(map[string]primitive.ObjectID)
-
-	for i, w := range wards {
-		docs[i] = w
-		wardIDs[w.Name] = w.ID
-	}
-
-	if _, err := coll.InsertMany(ctx, docs); err != nil {
-		return nil, err
-	}
-
-	log.Printf("🏘️ Seeded %d wards", len(wards))
-	return wardIDs, nil
-}
-
-// -------- SEED LEADERS --------
-
-func seedLeaders(ctx context.Context, db *database.Database, countyIDs map[string]primitive.ObjectID, constituencyIDs map[string]primitive.ObjectID, wardIDs map[string]primitive.ObjectID) error {
-	now := time.Now()
-	leaders := []models.Leader{
-		{
-			ID:         primitive.NewObjectID(),
-			Name:       "Johnson Sakaja",
-			Position:   "Governor",
-			CountyID:   countyIDs["Nairobi"],
-			CountyName: "Nairobi",
-			Party:      "UDA",
-			Email:      "governor@nairobi.go.ke",
-			Phone:      "+254700000001",
-			CreatedAt:  now,
-			UpdatedAt:  now,
-		},
-		{
-			ID:               primitive.NewObjectID(),
-			Name:             "Timothy Wanyonyi",
-			Position:         "MP",
-			CountyID:         countyIDs["Nairobi"],
-			CountyName:       "Nairobi",
-			ConstituencyID:   constituencyIDs["Westlands"],
-			ConstituencyName: "Westlands",
-			Party:            "ODM",
-			Email:            "wanyonyi@parliament.go.ke",
-			Phone:            "+254700000002",
-			CreatedAt:        now,
-			UpdatedAt:        now,
-		},
-		{
-			ID:               primitive.NewObjectID(),
-			Name:             "Jayendra Malde",
-			Position:         "MCA",
-			CountyID:         countyIDs["Nairobi"],
-			CountyName:       "Nairobi",
-			ConstituencyID:   constituencyIDs["Westlands"],
-			ConstituencyName: "Westlands",
-			WardID:           wardIDs["Parklands/Highridge"],
-			WardName:         "Parklands/Highridge",
-			Party:            "Jubilee",
-			Email:            "jayendra@nairobi.go.ke",
-			Phone:            "+254700000003",
-			CreatedAt:        now,
-			UpdatedAt:        now,
-		},
-	}
-
-	coll := db.GetCollection("leaders")
-	docs := make([]interface{}, len(leaders))
-	for i, l := range leaders {
-		docs[i] = l
-	}
-
-	if _, err := coll.InsertMany(ctx, docs); err != nil {
+func readJSONFile(path string, v interface{}) error {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
 		return err
 	}
+	return json.Unmarshal(b, v)
+}
 
-	log.Printf("👔 Seeded %d leaders", len(leaders))
+func loadCounties(path string) ([]models.County, error) {
+	var c []models.County
+	if err := readJSONFile(path, &c); err != nil {
+		return nil, fmt.Errorf("read counties json: %w", err)
+	}
+	return c, nil
+}
+
+func loadConstituencies(path string) ([]models.Constituency, error) {
+	var c []models.Constituency
+	if err := readJSONFile(path, &c); err != nil {
+		return nil, fmt.Errorf("read constituencies json: %w", err)
+	}
+	return c, nil
+}
+
+func loadWards(path string) ([]models.Ward, error) {
+	var w []models.Ward
+	if err := readJSONFile(path, &w); err != nil {
+		return nil, fmt.Errorf("read wards json: %w", err)
+	}
+	return w, nil
+}
+
+func loadLeaders(path string) ([]models.Leader, error) {
+	var l []models.Leader
+	if err := readJSONFile(path, &l); err != nil {
+		return nil, fmt.Errorf("read leaders json: %w", err)
+	}
+	return l, nil
+}
+
+/* ---------- Upsert functions (idempotent) ---------- */
+
+// upsertCounties returns map[name]ObjectID
+func upsertCounties(ctx context.Context, db *database.Database, counties []models.County) (map[string]primitive.ObjectID, error) {
+	coll := db.GetCollection("counties")
+	out := make(map[string]primitive.ObjectID)
+	now := time.Now()
+
+	for _, county := range counties {
+		// Set timestamps
+		if county.CreatedAt.IsZero() {
+			county.CreatedAt = now
+		}
+		county.UpdatedAt = now
+
+		// Generate ID if not provided
+		if county.ID.IsZero() {
+			county.ID = primitive.NewObjectID()
+		}
+
+		// Unique filter: prefer Code, fallback to Name
+		var filter bson.M
+		if county.Code != 0 {
+			filter = bson.M{"code": county.Code}
+		} else {
+			filter = bson.M{"name": county.Name}
+		}
+
+		// ✅ Exclude _id from being updated
+		update := bson.M{
+			"$set": bson.M{
+				"name":       county.Name,
+				"code":       county.Code,
+				"created_at": county.CreatedAt,
+				"updated_at": county.UpdatedAt,
+			},
+			"$setOnInsert": bson.M{
+				"_id": county.ID,
+			},
+		}
+
+		opts := options.Update().SetUpsert(true)
+		if _, err := coll.UpdateOne(ctx, filter, update, opts); err != nil {
+			return nil, fmt.Errorf("upsert county %s failed: %w", county.Name, err)
+		}
+
+		out[county.Name] = county.ID
+		log.Printf("✅ Upserted county: %s (code=%d)", county.Name, county.Code)
+	}
+
+	return out, nil
+}
+
+// upsertConstituencies returns map[name]ObjectID
+func upsertConstituencies(
+	ctx context.Context,
+	db *database.Database,
+	list []models.Constituency,
+	countyMap map[string]primitive.ObjectID,
+) (map[string]primitive.ObjectID, error) {
+	coll := db.GetCollection("constituencies")
+	out := make(map[string]primitive.ObjectID)
+	now := time.Now()
+
+	for _, c := range list {
+		// link county id if provided as name
+		if c.CountyID.IsZero() && c.CountyName != "" {
+			if id, ok := countyMap[c.CountyName]; ok {
+				c.CountyID = id
+			} else {
+				log.Printf("⚠️ constituency %s references unknown county %s — skipping", c.Name, c.CountyName)
+				continue
+			}
+		}
+
+		// timestamps & id
+		if c.CreatedAt.IsZero() {
+			c.CreatedAt = now
+		}
+		c.UpdatedAt = now
+		if c.ID.IsZero() {
+			c.ID = primitive.NewObjectID()
+		}
+
+		filter := bson.M{"name": c.Name}
+
+		// ✅ Use explicit field sets (never touch _id)
+		update := bson.M{
+			"$set": bson.M{
+				"name":        c.Name,
+				"county_id":   c.CountyID,
+				"county_name": c.CountyName,
+				"created_at":  c.CreatedAt,
+				"updated_at":  c.UpdatedAt,
+			},
+			"$setOnInsert": bson.M{
+				"_id": c.ID,
+			},
+		}
+
+		opts := options.Update().SetUpsert(true)
+		if _, err := coll.UpdateOne(ctx, filter, update, opts); err != nil {
+			return nil, fmt.Errorf("upsert constituency %s: %w", c.Name, err)
+		}
+		out[c.Name] = c.ID
+		log.Printf("⤴️ Upserted constituency: %s → county=%s", c.Name, c.CountyName)
+	}
+
+	return out, nil
+}
+
+// upsertWards returns map[name]ObjectID
+func upsertWards(
+	ctx context.Context,
+	db *database.Database,
+	list []models.Ward,
+	countyMap map[string]primitive.ObjectID,
+	constMap map[string]primitive.ObjectID,
+) (map[string]primitive.ObjectID, error) {
+
+	coll := db.GetCollection("wards")
+	out := make(map[string]primitive.ObjectID)
+	now := time.Now()
+
+	for _, w := range list {
+		// 🧭 Link County
+		if w.CountyID.IsZero() && w.CountyName != "" {
+			if id, ok := countyMap[w.CountyName]; ok {
+				w.CountyID = id
+			} else {
+				log.Printf("⚠️ ward %s references unknown county %s — skipping", w.Name, w.CountyName)
+				continue
+			}
+		}
+
+		// 🧭 Link Constituency
+		if w.ConstituencyID.IsZero() && w.ConstituencyName != "" {
+			if id, ok := constMap[w.ConstituencyName]; ok {
+				w.ConstituencyID = id
+			} else {
+				log.Printf("⚠️ ward %s references unknown constituency %s — skipping", w.Name, w.ConstituencyName)
+				continue
+			}
+		}
+
+		// 🕒 Handle timestamps & IDs
+		if w.CreatedAt.IsZero() {
+			w.CreatedAt = now
+		}
+		w.UpdatedAt = now
+		if w.ID.IsZero() {
+			w.ID = primitive.NewObjectID()
+		}
+
+		// 🎯 Unique filter: ward name + constituency
+		filter := bson.M{
+			"name":            w.Name,
+			"constituency_id": w.ConstituencyID,
+		}
+
+		// ✅ Only set allowed fields (never _id)
+		update := bson.M{
+			"$set": bson.M{
+				"name":              w.Name,
+				"county_id":         w.CountyID,
+				"county_name":       w.CountyName,
+				"constituency_id":   w.ConstituencyID,
+				"constituency_name": w.ConstituencyName,
+				"created_at":        w.CreatedAt,
+				"updated_at":        w.UpdatedAt,
+			},
+			"$setOnInsert": bson.M{
+				"_id": w.ID,
+			},
+		}
+
+		opts := options.Update().SetUpsert(true)
+		if _, err := coll.UpdateOne(ctx, filter, update, opts); err != nil {
+			return nil, fmt.Errorf("upsert ward %s: %w", w.Name, err)
+		}
+
+		out[w.Name] = w.ID
+		log.Printf("⤴️ Upserted ward: %s → constituency=%s, county=%s", w.Name, w.ConstituencyName, w.CountyName)
+	}
+
+	return out, nil
+}
+
+// upsertLeaders inserts leaders and links them to referenced entities when provided
+func upsertLeaders(
+	ctx context.Context,
+	db *database.Database,
+	list []models.Leader,
+	countyMap map[string]primitive.ObjectID,
+	constMap map[string]primitive.ObjectID,
+	wardMap map[string]primitive.ObjectID,
+) error {
+	coll := db.GetCollection("leaders")
+	now := time.Now()
+
+	for _, l := range list {
+		// 🧭 Resolve text references into ObjectIDs
+		if l.CountyID.IsZero() && l.CountyName != "" {
+			if id, ok := countyMap[l.CountyName]; ok {
+				l.CountyID = id
+			} else {
+				log.Printf("⚠️ leader %s references unknown county %s — continuing", l.Name, l.CountyName)
+			}
+		}
+		if l.ConstituencyID.IsZero() && l.ConstituencyName != "" {
+			if id, ok := constMap[l.ConstituencyName]; ok {
+				l.ConstituencyID = id
+			} else {
+				log.Printf("⚠️ leader %s references unknown constituency %s — continuing", l.Name, l.ConstituencyName)
+			}
+		}
+		if l.WardID.IsZero() && l.WardName != "" {
+			if id, ok := wardMap[l.WardName]; ok {
+				l.WardID = id
+			} else {
+				log.Printf("⚠️ leader %s references unknown ward %s — continuing", l.Name, l.WardName)
+			}
+		}
+
+		// 🕒 Handle timestamps
+		if l.CreatedAt.IsZero() {
+			l.CreatedAt = now
+		}
+		l.UpdatedAt = now
+
+		// 🆔 Ensure ID exists
+		if l.ID.IsZero() {
+			l.ID = primitive.NewObjectID()
+		}
+
+		// 🎯 Unique filter: name + position (so the same person/role combination isn’t duplicated)
+		filter := bson.M{
+			"name":     l.Name,
+			"position": l.Position,
+		}
+
+		// ✅ Explicitly control what gets updated (never update _id)
+		update := bson.M{
+			"$set": bson.M{
+				"name":              l.Name,
+				"position":          l.Position,
+				"county_id":         l.CountyID,
+				"county_name":       l.CountyName,
+				"constituency_id":   l.ConstituencyID,
+				"constituency_name": l.ConstituencyName,
+				"ward_id":           l.WardID,
+				"ward_name":         l.WardName,
+				"party":             l.Party,
+				"email":             l.Email,
+				"phone":             l.Phone,
+				"updated_at":        l.UpdatedAt,
+			},
+			"$setOnInsert": bson.M{
+				"_id":        l.ID,
+				"created_at": l.CreatedAt,
+			},
+		}
+
+		opts := options.Update().SetUpsert(true)
+		if _, err := coll.UpdateOne(ctx, filter, update, opts); err != nil {
+			return fmt.Errorf("upsert leader %s: %w", l.Name, err)
+		}
+
+		log.Printf("👤 Upserted leader: %s (%s) → county=%s, constituency=%s, ward=%s",
+			l.Name, l.Position, l.CountyName, l.ConstituencyName, l.WardName)
+	}
+
 	return nil
+}
+
+/* (optional) clear collections before seeding */
+func clearCollections(ctx context.Context, db *database.Database) {
+	names := []string{"counties", "constituencies", "wards", "leaders"}
+	for _, n := range names {
+		if err := db.GetCollection(n).Drop(ctx); err != nil {
+			log.Printf("clear %s: %v", n, err)
+		} else {
+			log.Printf("cleared %s", n)
+		}
+	}
 }

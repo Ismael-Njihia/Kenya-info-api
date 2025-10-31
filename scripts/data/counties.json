@@ -1,0 +1,382 @@
+[
+  {
+    "code": 1,
+    "name": "Mombasa",
+    "capital": "Mombasa City",
+    "population": 1208333,
+    "area": 212.5,
+    "governor": "Abdulswamad Shariff Nassir"
+  },
+  {
+    "code": 2,
+    "name": "Kwale",
+    "capital": "Kwale",
+    "population": 866820,
+    "area": 8270.3,
+    "governor": "Fatuma Achani"
+  },
+  {
+    "code": 3,
+    "name": "Kilifi",
+    "capital": "Kilifi",
+    "population": 1453787,
+    "area": 12245.9,
+    "governor": "Gideon Maitha Mung'aro"
+  },
+  {
+    "code": 4,
+    "name": "Tana River",
+    "capital": "Hola",
+    "population": 315943,
+    "area": 35375.8,
+    "governor": "Dhadho Godhana"
+  },
+  {
+    "code": 5,
+    "name": "Lamu",
+    "capital": "Lamu",
+    "population": 143920,
+    "area": 6273.1,
+    "governor": "Issa Abdallah Timamy"
+  },
+  {
+    "code": 6,
+    "name": "Taita-Taveta",
+    "capital": "Voi",
+    "population": 340671,
+    "area": 17083.9,
+    "governor": "Andrew Mwadime"
+  },
+  {
+    "code": 7,
+    "name": "Garissa",
+    "capital": "Garissa",
+    "population": 841353,
+    "area": 44536.0,
+    "governor": "Nathif Jama Adam"
+  },
+  {
+    "code": 8,
+    "name": "Wajir",
+    "capital": "Wajir",
+    "population": 781263,
+    "area": 56701.2,
+    "governor": "Ahmed Abdullahi Jiir"
+  },
+  {
+    "code": 9,
+    "name": "Mandera",
+    "capital": "Mandera",
+    "population": 867457,
+    "area": 25991.5,
+    "governor": "Mohamed Adan Khalif"
+  },
+  {
+    "code": 10,
+    "name": "Marsabit",
+    "capital": "Marsabit",
+    "population": 459785,
+    "area": 70761.2,
+    "governor": "Mohamud Ali"
+  },
+  {
+    "code": 11,
+    "name": "Isiolo",
+    "capital": "Isiolo",
+    "population": 268002,
+    "area": 25336.1,
+    "governor": "Abdi Ibrahim Guyo"
+  },
+  {
+    "code": 12,
+    "name": "Meru",
+    "capital": "Meru",
+    "population": 1545714,
+    "area": 7006.0,
+    "governor": "Kawira Mwangaza"
+  },
+  {
+    "code": 13,
+    "name": "Tharaka-Nithi",
+    "capital": "Kathwana",
+    "population": 393177,
+    "area": 2609.5,
+    "governor": "Muthomi Njuki"
+  },
+  {
+    "code": 14,
+    "name": "Embu",
+    "capital": "Embu",
+    "population": 608599,
+    "area": 2555.9,
+    "governor": "Cecily Mbarire"
+  },
+  {
+    "code": 15,
+    "name": "Kitui",
+    "capital": "Kitui",
+    "population": 1137335,
+    "area": 30429.5,
+    "governor": "Julius Malombe"
+  },
+  {
+    "code": 16,
+    "name": "Machakos",
+    "capital": "Machakos",
+    "population": 1421932,
+    "area": 6043.0,
+    "governor": "Wavinya Ndeti"
+  },
+  {
+    "code": 17,
+    "name": "Makueni",
+    "capital": "Wote",
+    "population": 987653,
+    "area": 8008.9,
+    "governor": "Mutula Kilonzo Jr."
+  },
+  {
+    "code": 18,
+    "name": "Nyandarua",
+    "capital": "Ol Kalou",
+    "population": 638289,
+    "area": 3245.2,
+    "governor": "Kiarie Badilisha"
+  },
+  {
+    "code": 19,
+    "name": "Nyeri",
+    "capital": "Nyeri",
+    "population": 759164,
+    "area": 3337.1,
+    "governor": "Mutahi Kahiga"
+  },
+  {
+    "code": 20,
+    "name": "Kirinyaga",
+    "capital": "Kerugoya",
+    "population": 610411,
+    "area": 1478.1,
+    "governor": "Anne Waiguru"
+  },
+  {
+    "code": 21,
+    "name": "Murang'a",
+    "capital": "Murang'a",
+    "population": 1056640,
+    "area": 2524.7,
+    "governor": "Irungu Kang'ata"
+  },
+  {
+    "code": 22,
+    "name": "Kiambu",
+    "capital": "Kiambu",
+    "population": 2417735,
+    "area": 2449.2,
+    "governor": "Kimani Wamatangi"
+  },
+  {
+    "code": 23,
+    "name": "Turkana",
+    "capital": "Lodwar",
+    "population": 926976,
+    "area": 71397.8,
+    "governor": "Jeremiah Lomorukai Napotikan"
+  },
+  {
+    "code": 24,
+    "name": "West Pokot",
+    "capital": "Kapenguria",
+    "population": 621241,
+    "area": 8418.2,
+    "governor": "Simon Kachapin"
+  },
+  {
+    "code": 25,
+    "name": "Samburu",
+    "capital": "Maralal",
+    "population": 310327,
+    "area": 21022.3,
+    "governor": "Jonathan Lelelit"
+  },
+  {
+    "code": 26,
+    "name": "Trans Nzoia",
+    "capital": "Kitale",
+    "population": 990341,
+    "area": 2495.5,
+    "governor": "George Natembeya"
+  },
+  {
+    "code": 27,
+    "name": "Uasin Gishu",
+    "capital": "Eldoret",
+    "population": 1163186,
+    "area": 2955.3,
+    "governor": "Jonathan Bii Chelilim"
+  },
+  {
+    "code": 28,
+    "name": "Elgeyo-Marakwet",
+    "capital": "Iten",
+    "population": 454480,
+    "area": 3032.0,
+    "governor": "Wesley Rotich"
+  },
+  {
+    "code": 29,
+    "name": "Nandi",
+    "capital": "Kapsabet",
+    "population": 885711,
+    "area": 2884.5,
+    "governor": "Stephen Sang"
+  },
+  {
+    "code": 30,
+    "name": "Baringo",
+    "capital": "Kabarnet",
+    "population": 666763,
+    "area": 11075.3,
+    "governor": "Benjamin Cheboi"
+  },
+  {
+    "code": 31,
+    "name": "Laikipia",
+    "capital": "Nanyuki",
+    "population": 518560,
+    "area": 8684.0,
+    "governor": "Joshua Irungu"
+    
+  },
+  {
+    "code": 32,
+    "name": "Nakuru",
+    "capital": "Nakuru",
+    "population": 2162202,
+    "area": 7509.5,
+    "governor": "Susan Kihika"
+  },
+  {
+    "code": 33,
+    "name": "Narok",
+    "capital": "Narok",
+    "population": 1156688,
+    "area": 17921.5,
+    "governor": "Patrick Ole Ntutu"
+    
+  },
+  {
+    "code": 34,
+    "name": "Kajiado",
+    "capital": "Kajiado",
+    "population": 1117840,
+    "area": 21292.7,
+    "governor": "Joseph Ole Lenku"
+    
+  },
+  {
+    "code": 35,
+    "name": "Kericho",
+    "capital": "Kericho",
+    "population": 901777,
+    "area": 2436.0,
+    "governor": "Eric Mutai"
+  },
+  {
+    "code": 36,
+    "name": "Bomet",
+    "capital": "Bomet",
+    "population": 875689,
+    "area": 1998.8,
+    "governor": "Hillary Barchok" 
+  },
+  {
+    "code": 37,
+    "name": "Kakamega",
+    "capital": "Kakamega",
+    "population": 1867579,
+    "area": 3033.8,
+    "governor": "FCPA Fernandes Barasa"
+  },
+  {
+    "code": 38,
+    "name": "Vihiga",
+    "capital": "Mbale",
+    "population": 590013,
+    "area": 563.0,
+    "governor": "Wilber Ottichilo"
+  },
+  {
+    "code": 39,
+    "name": "Bungoma",
+    "capital": "Bungoma",
+    "population": 1670570,
+    "area": 2206.9,
+    "governor": "Kenneth Lusaka"
+  },
+  {
+    "code": 40,
+    "name": "Busia",
+    "capital": "Busia",
+    "population": 893681,
+    "area": 1694.5,
+    "governor": "Paul Otuoma"
+  },
+  {
+    "code": 41,
+    "name": "Siaya",
+    "capital": "Siaya",
+    "population": 993183,
+    "area": 2530.5,
+    "governor": "James Orengo"
+  },
+  {
+    "code": 42,
+    "name": "Kisumu",
+    "capital": "Kisumu City",
+    "population": 1155574,
+    "area": 2085.9,
+    "governor": "Prof. Peter Anyang' Nyong'o"
+  },
+  {
+    "code": 43,
+    "name": "Homa Bay",
+    "capital": "Homa Bay",
+    "population": 1130508,
+    "area": 3152.5,
+    "governor": "Gladys Wanga"
+  },
+  {
+    "code": 44,
+    "name": "Migori",
+    "capital": "Migori",
+    "population": 1118359,
+    "area": 2586.4,
+    "governor": "Ochilo Ayacko"
+  },
+  {
+    "code": 45,
+    "name": "Kisii",
+    "capital": "Kisii",
+    "population": 1266860,
+    "area": 1317.9,
+    "governor": "Simba Arati"
+  },
+  {
+    "code": 46,
+    "name": "Nyamira",
+    "capital": "Nyamira",
+    "population": 605576,
+    "area": 912.5,
+    "governor": "Amos Nyaribo"
+  },
+  {
+    "code": 47,
+    "name": "Nairobi",
+    "capital": "Nairobi City",
+    "population": 4397073,
+    "area": 696.0,
+    "governor": "Johnson Sakaja"
+  }
+
+]

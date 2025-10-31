@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Johnson Sakaja",
+    "position": "Governor",
+    "county_name": "Nairobi",
+    "party": "UDA",
+    "email": "governor@nairobi.go.ke",
+    "phone": "+254700000001"
+  },
+  {
+    "name": "Timothy Wanyonyi",
+    "position": "Member of Parliament",
+    "county_name": "Nairobi",
+    "constituency_name": "Westlands",
+    "party": "ODM",
+    "email": "wanyonyi@parliament.go.ke"
+  }
+]
