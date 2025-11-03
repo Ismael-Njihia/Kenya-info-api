@@ -74,39 +74,34 @@ func (s *ConstituencyService) GetByID(ctx context.Context, id string) (*models.C
 
 // GetByCountyID retrieves constituencies belonging to a specific county
 func (s *ConstituencyService) GetByCountyID(ctx context.Context, countyID string, page, pageSize int) ([]models.Constituency, int64, error) {
-	objectID, err := primitive.ObjectIDFromHex(countyID)
+	objID, err := primitive.ObjectIDFromHex(countyID)
 	if err != nil {
-		return nil, 0, fmt.Errorf("invalid county ID: %w", err)
+		return nil, 0, fmt.Errorf("invalid county_id: %v", err)
 	}
 
-	skip := (page - 1) * pageSize
-	opts := options.Find().
-		SetSkip(int64(skip)).
-		SetLimit(int64(pageSize)).
-		SetSort(bson.D{{Key: "name", Value: 1}})
+	filter := bson.M{"county_id": objID}
 
-	filter := bson.M{"county_id": objectID}
+	// Pagination
+	skip := int64((page - 1) * pageSize)
+	limit := int64(pageSize)
 
-	cursor, err := s.collection.Find(ctx, filter, opts)
+	cursor, err := s.collection.Find(ctx, filter, options.Find().SetSkip(skip).SetLimit(limit))
 	if err != nil {
-		logger.Error("Failed to fetch constituencies by county", zap.Error(err), zap.String("county_id", countyID))
 		return nil, 0, err
 	}
 	defer cursor.Close(ctx)
 
-	var constituencies []models.Constituency
-	if err := cursor.All(ctx, &constituencies); err != nil {
-		logger.Error("Failed to decode constituencies", zap.Error(err))
+	var results []models.Constituency
+	if err = cursor.All(ctx, &results); err != nil {
 		return nil, 0, err
 	}
 
 	total, err := s.collection.CountDocuments(ctx, filter)
 	if err != nil {
-		logger.Error("Failed to count constituencies", zap.Error(err))
 		return nil, 0, err
 	}
 
-	return constituencies, total, nil
+	return results, total, nil
 }
 
 // Create a new constituency
